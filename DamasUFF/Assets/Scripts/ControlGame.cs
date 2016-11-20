@@ -63,7 +63,7 @@ public class ControlGame : MonoBehaviour
 				
 					
 					
-
+		//Set column and line of each House
 		int count = 0;
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
@@ -75,13 +75,14 @@ public class ControlGame : MonoBehaviour
 			}
 		}
 		
-
+		//Instantiate Objects to organize teams
 		GameObject teams = new GameObject ("Teams");
 		GameObject teamWhite = new GameObject ("Whites");
 		teamWhite.transform.SetParent (teams.transform);
 		GameObject teamBlack = new GameObject ("Blacks");
 		teamBlack.transform.SetParent (teams.transform);
 
+		//Instantiate each piece for each team
 		int k = 0;
 		bool alterna = false;
 		for (int i = 0; i < 8; i++) {
