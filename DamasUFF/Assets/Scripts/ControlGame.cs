@@ -36,10 +36,22 @@ public class ControlGame : MonoBehaviour
 	
 	}
 
-	public void EfectuatePlay ()
+	public void EfectuatePlay (Piece piece, MovementAction start, MovementAction end)
+	{
+		GameObject p = piece.transform.parent;
+
+
+		p.transform.Translate (new Vector3 ());
+
+
+	}
+
+	public void EfectuateListOfPlays (List<MovementAction> listOfPlays)
 	{
 
-
+		foreach (MovementAction play in listOfPlays) {
+			EfectuatePlay (play.start, play.end);
+		}
 	}
 
 	public void VerifyStatus ()
