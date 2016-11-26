@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3311268}
   - 23: {fileID: 2336872}
   - 114: {fileID: 114000010015361392}
+  - 65: {fileID: 65000012784330472}
   m_Layer: 0
   m_Name: BlackMenChecker_T
   m_TagString: Untagged
@@ -78,6 +79,18 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 135596}
   m_IsPrefabParent: 1
+--- !u!65 &65000012784330472
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 135596}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6999932, y: 0.24999961, z: 0.6999929}
+  m_Center: {x: 0.00000023841858, y: 0.12499872, z: -0.00000040233135}
 --- !u!114 &114000010015361392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,12 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623457dc8ac91ca4aadfe59957599b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlGame: {fileID: 0}
   id: 0
   isQueen: 0
-  color:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
   line: 0
   column: 0

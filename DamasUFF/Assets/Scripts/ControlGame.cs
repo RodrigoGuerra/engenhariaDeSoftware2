@@ -6,6 +6,7 @@ using System.Linq;
 
 public class ControlGame : MonoBehaviour
 {
+	public Piece selectedPiece;
 
 	public GameObject board;
 
@@ -38,7 +39,7 @@ public class ControlGame : MonoBehaviour
 
 	public void EfectuatePlay (Piece piece, MovementAction start, MovementAction end)
 	{
-		GameObject p = piece.transform.parent;
+		GameObject p = piece.transform.parent.gameObject;
 
 
 		p.transform.Translate (new Vector3 ());
@@ -49,9 +50,9 @@ public class ControlGame : MonoBehaviour
 	public void EfectuateListOfPlays (List<MovementAction> listOfPlays)
 	{
 
-		foreach (MovementAction play in listOfPlays) {
+		/*foreach (MovementAction play in listOfPlays) {
 			EfectuatePlay (play.start, play.end);
-		}
+		}*/
 	}
 
 	public void VerifyStatus ()
