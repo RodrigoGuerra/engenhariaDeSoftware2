@@ -14,4 +14,10 @@ public class AI : Player {
 	void Update () {
 	
 	}
+		
+	public void VerifyPlay (int[,] tab)
+	{
+		MinMax mm = new MinMax(tab, true, 9);
+		Play p = mm.Search(); 
+	}
 }

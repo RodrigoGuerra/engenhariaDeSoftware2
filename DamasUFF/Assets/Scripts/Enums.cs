@@ -21,3 +21,4 @@ public class Enums : MonoBehaviour {
 public enum GameTypeEnum{PlayerVsAI, AIvsAI, PlayerVsPlayer}
 public enum DifficultyEnum{Easy, Normal, Hard}
 public enum HouseTypeEnum{}
+public enum PieceTypeEnum{White = 1, Black = 2, KingWhite = 3, KingBlack = 4}
