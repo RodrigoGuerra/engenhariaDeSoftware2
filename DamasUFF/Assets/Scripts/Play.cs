@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Play : MonoBehaviour {
 	[ReadOnly]private int[,] TAB;            
@@ -7,7 +8,9 @@ public class Play : MonoBehaviour {
 	//Type é verdadeiro para 1 ou 3 e falso para 2 ou 4
 	[ReadOnly]private bool TYPE;
 	[ReadOnly]private int COUNT;
-	private ArrayList play = new ArrayList();
+
+	private List<int[]> play = new List<int[]>();
+	private int[] pos;
 
 	// Use this for initialization
 	void Start () {
@@ -45,7 +48,7 @@ public class Play : MonoBehaviour {
 		this.COUNT = number; 
 	}
 
-	public void setPlay(ArrayList play) {
+	public void setPlay(List<int[]> play) {
 		this.play = play;
 	}
 
@@ -61,11 +64,23 @@ public class Play : MonoBehaviour {
 		return TYPE;
 	}
 
+	public void setPos(int[] pos) {
+		this.pos = pos;
+	}
+
 	public int[,] getTAB() {
 		return TAB;
 	}
 
 	public int getCount() {        
 		return COUNT;        
-	}        
+	}       
+
+	public List<int[]> getPlay() {
+		return play;
+	}
+
+	public int[] getPos() {
+		return pos;
+	} 
 }

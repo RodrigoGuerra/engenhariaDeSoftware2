@@ -17,6 +17,8 @@ public class AI : Player {
 		
 	public void VerifyPlay (int[,] tab)
 	{
+		//true: WHITE
+		//false: BLACK
 		MinMax mm = new MinMax(tab, true, 9);
 		Play p = mm.Search(); 
 	}

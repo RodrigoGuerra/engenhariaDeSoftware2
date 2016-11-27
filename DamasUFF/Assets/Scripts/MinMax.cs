@@ -63,8 +63,12 @@ public class MinMax : MonoBehaviour {
 								Play play = new Play(child, TYPE);
 								if(level == 0){
 									play.setNextTab(child);
+									play.setPlay(list[i]);
+									play.setPos(pos);
 								}else{
 									play.setNextTab(state.getNextTab());
+									play.setPlay(state.getPlay());
+									play.setPos(state.getPos());
 								}
 
 								v = Utils.max(v, min_value(play, level + 1, alpha, beta));
@@ -83,6 +87,8 @@ public class MinMax : MonoBehaviour {
 		}
 		Play p = new Play(state.getTAB(), state.isTYPE());
 		p.setNextTab(state.getNextTab());
+		p.setPlay(state.getPlay());
+		p.setPos(state.getPos());
 		return p;
 	}
 
@@ -121,6 +127,8 @@ public class MinMax : MonoBehaviour {
 								int[,] child = Verifier.UpdateTab(list[i], state.getTAB(), pos, state.getTAB()[line,column]);
 								Play play = new Play(child, TYPE);                                
 								play.setNextTab(state.getNextTab());
+								play.setPlay(state.getPlay());
+								play.setPos(state.getPos());
 
 								v = Utils.min(v, MaxValue(play, level + 1, alpha, beta));
 
@@ -138,6 +146,8 @@ public class MinMax : MonoBehaviour {
 		}
 		Play p = new Play(state.getTAB(), state.isTYPE());
 		p.setNextTab(state.getNextTab());
+		p.setPlay(state.getPlay());
+		p.setPos(state.getPos());
 		return p;
 	}    
 

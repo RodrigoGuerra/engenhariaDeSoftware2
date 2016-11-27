@@ -22,18 +22,18 @@ public class Verifier : MonoBehaviour
 
 		switch (m[i,j]) {
 		case (int)PieceTypeEnum.White:
-			return Verify(i, j, 2, m, -1, plays, false);
+			return Verify(i, j, 2, m, -1, plays, false, (int)PieceTypeEnum.White);
 		case (int)PieceTypeEnum.Black:
-			return Verify(i, j, 2, m, 1, plays, false);
+			return Verify(i, j, 2, m, 1, plays, false, (int)PieceTypeEnum.Black);
 		case (int)PieceTypeEnum.KingWhite:
-			return Verify(i, j, MAX, m, -1, plays, true);
+			return Verify(i, j, MAX, m, -1, plays, true, (int)PieceTypeEnum.KingWhite);
 		case (int)PieceTypeEnum.KingBlack:			
-			return Verify(i, j, MAX, m, 1, plays, true);
+			return Verify(i, j, MAX, m, 1, plays, true, (int)PieceTypeEnum.KingBlack);
 		}
 		return plays;
 	}
 
-	public static List<List<int[]>> Verify(int i, int j, int max, int[,] m, int d, List<List<int[]>> plays, bool isKing) {
+	public static List<List<int[]>> Verify(int i, int j, int max, int[,] m, int d, List<List<int[]>> plays, bool isKing, int color) {
 		int opponentColor = 2;
 		if (d == 1) {
 			opponentColor = 1;
@@ -43,20 +43,20 @@ public class Verifier : MonoBehaviour
 
 		//Jogada para trás
 		//Direita
-		PlayDirection(plays, m, max, opponentColor, i, j, d, isKing, isKing, 1, 1, "pd_BR");
+		PlayDirection(plays, m, max, opponentColor, i, j, d, isKing, isKing, 1, 1, "pd_BR", color);
 		//Esquerda
-		PlayDirection(plays, m, max, opponentColor, i, j, d, isKing, isKing, 1, -1, "pd_BL");
+		PlayDirection(plays, m, max, opponentColor, i, j, d, isKing, isKing, 1, -1, "pd_BL", color);
 
 		//Jogada para frente
 		//Direita
-		PlayDirection(plays, m, max, opponentColor, i, j, d, isKing, isKing, -1, 1, "pd_FR");
+		PlayDirection(plays, m, max, opponentColor, i, j, d, isKing, isKing, -1, 1, "pd_FR", color);
 		//Esquerda
-		PlayDirection(plays, m, max, opponentColor, i, j, d, isKing, isKing, -1, -1, "pd_FL");
+		PlayDirection(plays, m, max, opponentColor, i, j, d, isKing, isKing, -1, -1, "pd_FL", color);
 
 		return plays;
 	}
 
-	public static List<List<int[]>> EatPiece(int i, int j, int max, int[,] m, int d, List<int[]> play, bool ate, string name) {		
+	public static List<List<int[]>> EatPiece(int i, int j, int max, int[,] m, int d, List<int[]> play, bool ate, string name, int color) {		
 		int opponentColor = 2;
 		if (d == 1) {
 			opponentColor = 1;
@@ -66,15 +66,15 @@ public class Verifier : MonoBehaviour
 
 		//Jogada para trás
 		//Direita
-		EatDirection(plays, play, max, m, opponentColor, i, j, d, 1, 1, name);
+		EatDirection(plays, play, max, m, opponentColor, i, j, d, 1, 1, name, color);
 		//Esquerda
-		EatDirection(plays, play, max, m, opponentColor, i, j, d, 1, -1, name);
+		EatDirection(plays, play, max, m, opponentColor, i, j, d, 1, -1, name, color);
 
 		//Jogada para frente
 		//Direita
-		EatDirection(plays, play, max, m, opponentColor, i, j, d, -1, 1, name);
+		EatDirection(plays, play, max, m, opponentColor, i, j, d, -1, 1, name, color);
 		//Esquerda
-		EatDirection(plays, play, max, m, opponentColor, i, j, d, -1, -1, name);
+		EatDirection(plays, play, max, m, opponentColor, i, j, d, -1, -1, name, color);
 			
 		return plays;		
 	}
@@ -234,10 +234,10 @@ public class Verifier : MonoBehaviour
 		}
 		for (int i = 0; i < MAX; i++) {
 			if (resp[MAX - 1,i] == 1) {
-				resp[MAX - 1,i] = 3;
+				resp[MAX - 1,i] = (int)PieceTypeEnum.KingWhite;
 			}
 			if (resp[0,i] == 2) {
-				resp[0,i] = 4;
+				resp[0,i] = (int)PieceTypeEnum.KingBlack;
 			}
 		}							
 
@@ -255,11 +255,11 @@ public class Verifier : MonoBehaviour
 	}
 
 	public static bool TypeFromPosition(int[] pos, int[,] tab) {
-		return ((tab[pos[0],pos[1]] == 1)
-			|| (tab[pos[0],pos[1]] == 3));
+		return ((tab[pos[0],pos[1]] == (int)PieceTypeEnum.White)
+			|| (tab[pos[0],pos[1]] == (int)PieceTypeEnum.KingWhite));
 	}
 
-	public static void PlayDirection(List<List<int[]>> plays, int[,] m, int max, int opponentColor, int i, int j, int d, bool isKing, bool isBackward, int signal_line, int signal_column, string name) {
+	public static void PlayDirection(List<List<int[]>> plays, int[,] m, int max, int opponentColor, int i, int j, int d, bool isKing, bool isBackward, int signal_line, int signal_column, string name, int color) {
 		List<int[]> play = new List<int[]>();
 		List<List<int[]>> tempPlays = new List<List<int[]>>();
 		int[,] tab = MatchTab(m);
@@ -273,7 +273,7 @@ public class Verifier : MonoBehaviour
 
 					play.Add(position);
 
-					AddAtTheEnd(tempPlays, ConcatListOfPlays(play, EatPiece(i+ signal_line * 2 * k * d, j + signal_column * 2 * k, MAX, tab, d, play, false, name)));
+					AddAtTheEnd(tempPlays, ConcatListOfPlays(play, EatPiece(i+ signal_line * 2 * k * d, j + signal_column * 2 * k, MAX, tab, d, play, false, name, color)));
 
 					ate = true;
 					k++;
@@ -281,14 +281,14 @@ public class Verifier : MonoBehaviour
 					k = MAX;
 				}
 			} else if (Compare(i+ signal_line * k * d, j + signal_column * k, tab, 0) && ((isKing && isBackward) || (!isBackward))) {
-				tab[i+ signal_line * k * d,j + signal_column * k] = 3;
+				tab[i+ signal_line * k * d,j + signal_column * k] = color;
 
 				int[] posicao = {i+ signal_line * k * d, j + signal_column * k};
 
 				play.Add(posicao);
 
 				if (ate) {
-					AddAtTheEnd(tempPlays, ConcatListOfPlays(play, EatPiece(i+ signal_line * k * d, j + signal_column * k, MAX, tab, d, play, false, name)));
+					AddAtTheEnd(tempPlays, ConcatListOfPlays(play, EatPiece(i+ signal_line * k * d, j + signal_column * k, MAX, tab, d, play, false, name, color)));
 				}
 
 			} else {
@@ -299,7 +299,7 @@ public class Verifier : MonoBehaviour
 		AddAtTheEnd(plays, tempPlays);
 	}
 
-	public static void EatDirection(List<List<int[]>> plays, List<int[]> play, int max, int[,] m, int opponentColor, int i, int j, int d, int signal_line, int signal_column, string name){
+	public static void EatDirection(List<List<int[]>> plays, List<int[]> play, int max, int[,] m, int opponentColor, int i, int j, int d, int signal_line, int signal_column, string name, int color){
 		List<int[]> play1 = new List<int[]>();
 		List<List<int[]>> tempPlays = new List<List<int[]>>();
 		int[,] tab = MatchTab(m);
@@ -312,21 +312,21 @@ public class Verifier : MonoBehaviour
 					int[] posicao = {i + signal_line * 2 * k * d, j + signal_column * 2 * k};
 
 					play1.Add(posicao);
-					AddAtTheEnd(tempPlays, ConcatListOfPlays(play1, EatPiece(i + signal_line * 2 * k * d, j + signal_column * 2 * k, MAX, tab, d, play1, false, name)));
+					AddAtTheEnd(tempPlays, ConcatListOfPlays(play1, EatPiece(i + signal_line * 2 * k * d, j + signal_column * 2 * k, MAX, tab, d, play1, false, name, color)));
 					ate = true;
 					k++;
 				} else {
 					k = MAX;
 				}
 			} else if (Compare(i + signal_line * k * d, j + signal_column * k, tab, 0)) {
-				tab[i + signal_line * k * d,j + signal_column * k] = 3;
+				tab[i + signal_line * k * d,j + signal_column * k] = color;
 
 				int[] position = {i + signal_line * k * d, j + signal_column * k};
 
 				play1.Add(position);
 
 				if (ate) {
-					AddAtTheEnd(tempPlays, ConcatListOfPlays(play, EatPiece(i + signal_line * k * d, j + signal_column * k, MAX, tab, d, play1, false, name)));
+					AddAtTheEnd(tempPlays, ConcatListOfPlays(play, EatPiece(i + signal_line * k * d, j + signal_column * k, MAX, tab, d, play1, false, name, color)));
 				}
 
 			} else {
