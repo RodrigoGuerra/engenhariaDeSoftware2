@@ -1,19 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MovementAction : MonoBehaviour {
+public class MovementAction  {
 
 
-	public House start;
-	public House end;
+	public House houseToGo;
+	public Piece piece;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

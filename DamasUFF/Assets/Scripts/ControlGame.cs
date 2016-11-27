@@ -12,12 +12,21 @@ public class ControlGame : MonoBehaviour
 
 	public List<House> houses;
 	public House[,] housesArray;
+	public float movementSpeed = 250f;
+
+	public Queue<MovementAction> movementsToGo;
+
+	private bool isMoving;
+	private House HouseToGo;
+	private Piece pieceToMove;
+
 
 	// Use this for initialization
 	void Start ()
 	{
 		houses = new List<House> ();
 		houses = board.GetComponentsInChildren<House> ().ToList ();
+		movementsToGo = new Queue<MovementAction> ();
 		housesArray = new House[8, 8];
 
 		int k = 0;
@@ -29,30 +38,70 @@ public class ControlGame : MonoBehaviour
 		}
 			
 		InstantiateBoard (GameTypeEnum.PlayerVsAI, DifficultyEnum.Normal);
+
+
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
+		
+
+		if (isMoving) {
+			
+			float step = (movementSpeed * 0.01f) * Time.deltaTime;
+
+			Vector3 positionToGo = new Vector3 (HouseToGo.transform.position.x, 0.15f, HouseToGo.transform.position.z);
+			pieceToMove.transform.position = Vector3.MoveTowards (pieceToMove.transform.position, positionToGo, step);
+			if (pieceToMove.transform.position == positionToGo) {
+
+				isMoving = false;		
+				Debug.Log ("ismoving =false, chegou na posicao");
+			
+							
+			} else {
+
+				if (movementsToGo !=null && movementsToGo.Count != 0) {
+
+					MovementAction m = movementsToGo.Dequeue ();
+					EfectuatePlay (m.piece, m.houseToGo);
+				}
+					
+			}
+		
+		}
+	}
+
+
+	public void EfectuatePlay (Piece piece, House houseToGo)
+	{
+		
+		if (!isMoving) {		
 	
+			GameObject p = piece.transform.parent.gameObject;
+
+			HouseToGo = houseToGo;
+			pieceToMove = piece;
+
+
+			//for TESTING
+			//HouseToGo = housesArray [piece.line + 1, piece.column + 1];     
+
+	
+
+			isMoving = true;
+			Debug.Log ("ismoving =true, iniciou movimento");
+		}
+
+
 	}
 
-	public void EfectuatePlay (Piece piece, MovementAction start, MovementAction end)
+	public void EfectuateListOfPlays(Piece p, List<MovementAction> listOfPlays)
 	{
-		GameObject p = piece.transform.parent.gameObject;
+		for (int i = 0; i < listOfPlays.Count; i++) {
+			movementsToGo.Enqueue (listOfPlays.ElementAt(i));
+		}
 
-
-		p.transform.Translate (new Vector3 ());
-
-
-	}
-
-	public void EfectuateListOfPlays (List<MovementAction> listOfPlays)
-	{
-
-		/*foreach (MovementAction play in listOfPlays) {
-			EfectuatePlay (play.start, play.end);
-		}*/
 	}
 
 	public void VerifyStatus ()

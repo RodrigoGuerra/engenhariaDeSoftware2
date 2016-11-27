@@ -33,6 +33,10 @@ public class Piece : MonoBehaviour {
 				if(hit.collider.gameObject.GetComponent<Piece>() != null){
 					//controlGame gets the reference of last piece clicked by mouse
 					controlGame.selectedPiece = hit.collider.gameObject.GetComponent<Piece>();
+
+
+					//TESTING MOVEMENT
+				//	controlGame.EfectuatePlay (controlGame.selectedPiece,new House() );      
 				}else{
 					controlGame.selectedPiece = null;
 				}
