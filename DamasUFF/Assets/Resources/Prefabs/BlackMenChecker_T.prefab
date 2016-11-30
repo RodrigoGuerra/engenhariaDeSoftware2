@@ -14,7 +14,7 @@ GameObject:
   - 65: {fileID: 65000012784330472}
   m_Layer: 0
   m_Name: BlackMenChecker_T
-  m_TagString: Untagged
+  m_TagString: BlackPieceTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

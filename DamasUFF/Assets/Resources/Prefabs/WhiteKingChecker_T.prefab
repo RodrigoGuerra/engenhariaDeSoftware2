@@ -13,7 +13,7 @@ GameObject:
   - 114: {fileID: 114000013648713356}
   m_Layer: 0
   m_Name: WhiteKingChecker_T
-  m_TagString: Untagged
+  m_TagString: WhiteQueenTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,12 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 623457dc8ac91ca4aadfe59957599b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controlGame: {fileID: 0}
   id: 0
   isQueen: 1
-  color:
-    r: 0
-    g: 0
-    b: 0
-    a: 0
+  color: {r: 0, g: 0, b: 0, a: 0}
   line: 0
   column: 0

@@ -5,7 +5,7 @@ public class Player : MonoBehaviour {
 
 
 	public string name;
-	public string color;
+	public Color color;
 
 	// Use this for initialization
 	void Start () {

@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - House
+  - WhitePieceTag
+  - BlackPieceTag
+  - WhiteQueenTag
+  - BlackQueenTag
   layers:
   - Default
   - TransparentFX

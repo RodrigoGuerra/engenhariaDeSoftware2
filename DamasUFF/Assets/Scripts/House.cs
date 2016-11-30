@@ -6,6 +6,7 @@ public class House : MonoBehaviour {
 	[ReadOnly]public int line;
 	[ReadOnly]public int column;
 
+
 	// Use this for initialization
 	void Start () {
 	
