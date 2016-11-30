@@ -36,7 +36,7 @@ public class Piece : MonoBehaviour {
 
 
 					//TESTING MOVEMENT
-				//	controlGame.EfectuatePlay (controlGame.selectedPiece,new House() );      
+					//controlGame.EfectuatePlay (controlGame.selectedPiece,new House() );      
 				}else{
 					controlGame.selectedPiece = null;
 				}

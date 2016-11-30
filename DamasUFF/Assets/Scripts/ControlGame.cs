@@ -179,7 +179,7 @@ public class ControlGame : MonoBehaviour
 
 
 	//Do not call this method directly if you need to make one movement, call EfectuateListofPlay and pass a list with one movement
-	private void EfectuatePlay (Piece piece, House houseToGo)
+	public void EfectuatePlay (Piece piece, House houseToGo)
 	{
 		
 		if (!isMoving) {		
