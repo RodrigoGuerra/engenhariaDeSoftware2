@@ -92,9 +92,10 @@ public class ControlGame : MonoBehaviour
 
 				isMoving = false;		
 				//Debug.Log ("ismoving =false, chegou na posicao");
-			
-				pieceToMove.column = HouseToGo.line;
-				pieceToMove.line = HouseToGo.column;
+				piecesArray [pieceToMove.line, pieceToMove.column] = 0;
+				pieceToMove.column = HouseToGo.column;
+				pieceToMove.line = HouseToGo.line;
+
 				GeneratePiecesArray ();
 				if (movementsToGo.Count == 0) {
 					//if there is no movements left to do, change turn
@@ -103,6 +104,8 @@ public class ControlGame : MonoBehaviour
 					ChangePlayersTurn ();
 					TurnOffAllHouses ();
 				} 
+
+				PrintPiecesArray ();
 
 			}
 		
@@ -119,10 +122,27 @@ public class ControlGame : MonoBehaviour
 		}
 	}
 
-	public void TurnOffAllHouses(){
+	public void TurnOffAllHouses ()
+	{
 		foreach (House h in houses) {
 			h.TurnOffLEDHouse ();
 		}
+	}
+
+	public void PrintPiecesArray ()
+	{
+
+		string t = "";
+
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				t += piecesArray [i, j] + " ";
+			}
+			t += " \n";
+		}
+
+
+		Debug.Log (t);
 	}
 
 	//Use this to start game, after user click play game (already set gametype and difficulty)

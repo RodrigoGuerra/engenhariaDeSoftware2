@@ -43,12 +43,10 @@ public class Piece : MonoBehaviour
 				     && hit.collider.gameObject.GetComponent<Piece> () == this) {
 					//controlGame gets the reference of last piece clicked by mouse
 
-
-					controlGame.selectedPiece = this;
-
-
-					if ((controlGame.selectedPiece.CompareTag ("WhitePieceTag") && controlGame.currentPlayerTurn.color == Color.white)
-					     || (controlGame.selectedPiece.CompareTag ("BlackPieceTag") && controlGame.currentPlayerTurn.color == Color.black)) {
+					if ((controlGame.currentPlayerTurn.color == Color.white && (this.CompareTag ("WhitePieceTag") || this.CompareTag ("WhiteQueenTag")))
+					   || (controlGame.currentPlayerTurn.color == Color.black && (this.CompareTag ("BlackPieceTag") || this.CompareTag ("BlackQueenTag")))) {
+						controlGame.selectedPiece = this;
+					
 						controlGame.TurnOffAllHouses ();
 						Verifier.VerifyPlayByPiece (this.line, this.column, controlGame.piecesArray,controlGame);
 
