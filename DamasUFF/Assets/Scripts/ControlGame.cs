@@ -91,32 +91,37 @@ public class ControlGame : MonoBehaviour
 			if (pieceToMove.transform.position == positionToGo) {
 
 				isMoving = false;		
-				Debug.Log ("ismoving =false, chegou na posicao");
+				//Debug.Log ("ismoving =false, chegou na posicao");
 			
-							
-			} else {
-				//after the movement animation update line and column of the piece moved
 				pieceToMove.column = HouseToGo.line;
 				pieceToMove.line = HouseToGo.column;
-
-				if (movementsToGo != null && movementsToGo.Count != 0) {
-					
-					MovementAction m = movementsToGo.Dequeue ();
-					EfectuatePlay (m.piece, m.houseToGo);
-				} else if (movementsToGo.Count == 0) {
+				GeneratePiecesArray ();
+				if (movementsToGo.Count == 0) {
 					//if there is no movements left to do, change turn
 
+					Debug.Log ("Change turn.");
 					ChangePlayersTurn ();
-				}
-					
+					TurnOffAllHouses ();
+				} 
+
 			}
 		
 		} else {
 
-			if (movementsToGo.Count != 0) {
+			//after the movement animation update line and column of the piece moved
+
+
+			if (movementsToGo != null && movementsToGo.Count != 0) {
+
 				MovementAction m = movementsToGo.Dequeue ();
 				EfectuatePlay (m.piece, m.houseToGo);
-			} 
+			}  
+		}
+	}
+
+	public void TurnOffAllHouses(){
+		foreach (House h in houses) {
+			h.TurnOffLEDHouse ();
 		}
 	}
 
@@ -132,16 +137,22 @@ public class ControlGame : MonoBehaviour
 		case GameTypeEnum.AIvsAI:
 			player1 = new AI ();
 			player2 = new Person ();
+			player1.id = 1;
+			player2.id = 2;
 			break;
 
 		case GameTypeEnum.PlayerVsAI:
 			player1 = new AI ();
 			player2 = new Person ();
+			player1.id = 1;
+			player2.id = 2;
 			break;
 
 		case GameTypeEnum.PlayerVsPlayer:
 			player1 = new Person ();
 			player2 = new Person ();
+			player1.id = 1;
+			player2.id = 2;
 			break;
 
 		default:
@@ -156,15 +167,20 @@ public class ControlGame : MonoBehaviour
 		SetFirstPlayerTurn (first);
 	}
 
-	private void SetFirstPlayerTurn(Player first){
+	private void SetFirstPlayerTurn (Player first)
+	{
 		
 		currentPlayerTurn = first;
 	}
 
 
-	public void ChangePlayersTurn(){
+	public void ChangePlayersTurn ()
+	{
 
-		currentPlayerTurn = currentPlayerTurn == player1 ? player2 : player1;
+		if (currentPlayerTurn.id == player1.id)
+			currentPlayerTurn = player2;
+		else
+			currentPlayerTurn = player1;
 	}
 
 	private void ChooseTeamsRandomly ()
@@ -226,7 +242,7 @@ public class ControlGame : MonoBehaviour
 			
 
 			isMoving = true;
-			Debug.Log ("ismoving =true, iniciou movimento");
+			//	Debug.Log ("ismoving =true, iniciou movimento");
 		}
 
 

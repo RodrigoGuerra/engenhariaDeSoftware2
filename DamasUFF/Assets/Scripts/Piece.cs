@@ -45,11 +45,11 @@ public class Piece : MonoBehaviour
 
 
 					controlGame.selectedPiece = this;
-					Debug.Log (controlGame.selectedPiece);
+
 
 					if ((controlGame.selectedPiece.CompareTag ("WhitePieceTag") && controlGame.currentPlayerTurn.color == Color.white)
 					     || (controlGame.selectedPiece.CompareTag ("BlackPieceTag") && controlGame.currentPlayerTurn.color == Color.black)) {
-					
+						controlGame.TurnOffAllHouses ();
 						Verifier.VerifyPlayByPiece (this.line, this.column, controlGame.piecesArray,controlGame);
 
 					//	Debug.Log ("Piece line: "+this.line+"  Piece Column: " + this.column);

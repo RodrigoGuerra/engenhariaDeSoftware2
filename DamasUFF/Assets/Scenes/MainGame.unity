@@ -185,6 +185,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &46621179
 GameObject:
@@ -281,6 +282,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &85579395
 GameObject:
@@ -377,6 +379,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &108709082
 GameObject:
@@ -473,6 +476,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &164312867
 GameObject:
@@ -569,6 +573,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &165713081
 GameObject:
@@ -665,6 +670,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &175660115
 GameObject:
@@ -761,6 +767,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &204242521
 GameObject:
@@ -857,6 +864,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &218561837
 GameObject:
@@ -953,6 +961,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &301689399
 GameObject:
@@ -1049,6 +1058,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &316922408
 GameObject:
@@ -1145,6 +1155,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &321244056
 GameObject:
@@ -1241,6 +1252,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &337813516
 GameObject:
@@ -1337,6 +1349,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &373711840
 GameObject:
@@ -1433,6 +1446,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &373938726
 GameObject:
@@ -1529,6 +1543,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &434632642
 GameObject:
@@ -1625,6 +1640,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &473129044
 GameObject:
@@ -1721,6 +1737,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &510164557
 GameObject:
@@ -1817,6 +1834,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &520972412
 GameObject:
@@ -1913,6 +1931,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &530541504
 GameObject:
@@ -2009,6 +2028,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &536896323
 GameObject:
@@ -2105,6 +2125,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &569186591
 GameObject:
@@ -2201,6 +2222,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &657884721
 GameObject:
@@ -2297,6 +2319,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &658112915
 GameObject:
@@ -2393,6 +2416,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &660467351
 GameObject:
@@ -2552,6 +2576,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &764186592
 GameObject:
@@ -2648,6 +2673,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &770434196
 GameObject:
@@ -2744,6 +2770,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &788817823
 GameObject:
@@ -2840,6 +2867,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &796843428
 GameObject:
@@ -2936,6 +2964,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &862230911
 GameObject:
@@ -3119,6 +3148,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &923359254
 GameObject:
@@ -3215,6 +3245,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &973587190
 GameObject:
@@ -3311,6 +3342,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &1038623178
 GameObject:
@@ -3456,6 +3488,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &1074094325
 GameObject:
@@ -3552,6 +3585,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &1083621084 stripped
 GameObject:
@@ -3652,6 +3686,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &1139517274
 GameObject:
@@ -3748,6 +3783,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &1188014039
 GameObject:
@@ -3844,6 +3880,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &1228825997
 GameObject:
@@ -3940,6 +3977,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &1315185998
 GameObject:
@@ -4036,6 +4074,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &1344859903
 GameObject:
@@ -4132,6 +4171,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &1361021313
 GameObject:
@@ -4228,6 +4268,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &1368065590
 GameObject:
@@ -4324,6 +4365,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &1393652648
 GameObject:
@@ -4420,6 +4462,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &1397372754
 GameObject:
@@ -4516,6 +4559,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &1445772496
 GameObject:
@@ -4612,6 +4656,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &1474191295
 GameObject:
@@ -4708,6 +4753,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &1491449198
 GameObject:
@@ -4804,6 +4850,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &1501939298
 GameObject:
@@ -4900,6 +4947,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1001 &1537910787
 Prefab:
@@ -5127,6 +5175,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &1723735568
 GameObject:
@@ -5223,6 +5272,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &1753852849
 GameObject:
@@ -5319,6 +5369,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &1784680358
 GameObject:
@@ -5415,6 +5466,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &1818001237
 GameObject:
@@ -5511,6 +5563,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &1833583615
 GameObject:
@@ -5607,6 +5660,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &1890352498
 GameObject:
@@ -5703,6 +5757,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &1900462660
 GameObject:
@@ -5799,6 +5854,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &1930951504
 GameObject:
@@ -5895,6 +5951,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &1978459974
 GameObject:
@@ -5991,6 +6048,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &2007381495
 GameObject:
@@ -6087,6 +6145,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &2059902009
 GameObject:
@@ -6183,6 +6242,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &2073205763
 GameObject:
@@ -6279,6 +6339,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &2078084693
 GameObject:
@@ -6375,6 +6436,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0
 --- !u!1 &2087167963
 GameObject:
@@ -6471,6 +6533,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
   isHighlighted: 0
 --- !u!1 &2147121080
 GameObject:
@@ -6567,4 +6630,5 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
   isHighlighted: 0

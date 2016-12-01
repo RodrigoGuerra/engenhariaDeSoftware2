@@ -5,6 +5,10 @@ public class AI : Player {
 
 	public Object board;
 
+	public AI(){
+
+	}
+
 	// Use this for initialization
 	void Start () {
 		

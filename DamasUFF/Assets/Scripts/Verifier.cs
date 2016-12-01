@@ -45,11 +45,11 @@ public class Verifier : MonoBehaviour
 					int linha = item [0]; //linha
 					int coluna = item [1]; //coluna
 
-					Debug.Log ("{" + linha + "," + coluna + "} ");
+					//Debug.Log ("{" + linha + "," + coluna + "} ");
 					cg.housesArray[linha,coluna].TurnOnLEDHouse();
 
 				}
-				Debug.Log ("------------------------------------------------");
+			//	Debug.Log ("------------------------------------------------");
 			}
 
 			m [i, j] = temp;

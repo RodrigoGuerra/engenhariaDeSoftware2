@@ -12,6 +12,8 @@ public class House : MonoBehaviour
 
 	public Material highlightedMaterial;
 
+	public Material normalMaterial;
+
 	public bool isHighlighted = false;
 
 
@@ -41,7 +43,8 @@ public class House : MonoBehaviour
 	public void TurnOffLEDHouse ()
 	{
 		this.isHighlighted = false;
-
+		MeshRenderer rend = GetComponent<MeshRenderer> ();        
+		rend.material = normalMaterial;
 		//set LED off
 	}
 
@@ -68,13 +71,13 @@ public class House : MonoBehaviour
 						m.houseToGo = this;
 						m.piece = controlGame.selectedPiece;
 
-						Debug.Log (m.piece);
+					//	Debug.Log (m.piece);
 
 						List<MovementAction> list = new List<MovementAction> ();
 						list.Add (m);
 						controlGame.EfectuateListOfPlays (list);
 
-						TurnOffLEDHouse ();
+					
 					}
 
 
