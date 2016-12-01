@@ -44,7 +44,7 @@ public class MinMax : MonoBehaviour {
 
 						//Gera a lista de jogadas para tal posição
 						int pieceType = state.getTAB()[line,column];
-						List<List<int[]>> list = Verifier.VerifyPlayByPiece(line, column, state.getTAB());
+						List<List<int[]>> list = Verifier.VerifyPlayByPiece(line, column, state.getTAB(),null);
 						state.getTAB()[line,column] = pieceType;
 
 						//Posição atual
@@ -109,7 +109,7 @@ public class MinMax : MonoBehaviour {
 
 						//Gera a lista de jogadas para tal posição
 						int pieceType = state.getTAB()[line,column];
-						List<List<int[]>> list = Verifier.VerifyPlayByPiece(line, column, state.getTAB());
+						List<List<int[]>> list = Verifier.VerifyPlayByPiece(line, column, state.getTAB(),null);
 						state.getTAB()[line,column] = pieceType;
 
 						//Posição atual

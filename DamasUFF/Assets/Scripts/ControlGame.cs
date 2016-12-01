@@ -6,6 +6,9 @@ using System.Linq;
 
 public class ControlGame : MonoBehaviour
 {
+	//Verifier class
+
+
 	//Both Players(AI AND/OR PERSON)
 	public Player player1;
 	public Player player2;
@@ -43,6 +46,8 @@ public class ControlGame : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		
+
 		houses = new List<House> ();
 		houses = board.GetComponentsInChildren<House> ().ToList ();
 		movementsToGo = new Queue<MovementAction> ();
@@ -100,12 +105,18 @@ public class ControlGame : MonoBehaviour
 					EfectuatePlay (m.piece, m.houseToGo);
 				} else if (movementsToGo.Count == 0) {
 					//if there is no movements left to do, change turn
-					currentPlayerTurn = currentPlayerTurn == player1 ? player2 : player1;
 
+					ChangePlayersTurn ();
 				}
 					
 			}
 		
+		} else {
+
+			if (movementsToGo.Count != 0) {
+				MovementAction m = movementsToGo.Dequeue ();
+				EfectuatePlay (m.piece, m.houseToGo);
+			} 
 		}
 	}
 
@@ -140,10 +151,21 @@ public class ControlGame : MonoBehaviour
 	
 		ChooseTeamsRandomly ();
 
-		currentPlayerTurn = player1.color == Color.white ? player1 : player2;
+		Player first = player1.color == Color.white ? player1 : player2;
 
+		SetFirstPlayerTurn (first);
 	}
 
+	private void SetFirstPlayerTurn(Player first){
+		
+		currentPlayerTurn = first;
+	}
+
+
+	public void ChangePlayersTurn(){
+
+		currentPlayerTurn = currentPlayerTurn == player1 ? player2 : player1;
+	}
 
 	private void ChooseTeamsRandomly ()
 	{
@@ -163,17 +185,25 @@ public class ControlGame : MonoBehaviour
 		
 		foreach (Piece p in teamWhitePieces) {
 			if (p.CompareTag ("WhitePieceTag"))
-				piecesArray [p.line, p.column] = 1;
+				piecesArray [p.line, p.column] = (int)PieceTypeEnum.White;
 			else if (p.CompareTag ("WhiteQueenTag"))
-				piecesArray [p.line, p.column] = 3;
+				piecesArray [p.line, p.column] = (int)PieceTypeEnum.KingWhite;
 		}
 
 		foreach (Piece p in teamBlackPieces) {
 			if (p.CompareTag ("BlackPieceTag"))
-				piecesArray [p.line, p.column] = 2;
+				piecesArray [p.line, p.column] = (int)PieceTypeEnum.Black;
 			else if (p.CompareTag ("BlackQueenTag"))
-				piecesArray [p.line, p.column] = 4;
+				piecesArray [p.line, p.column] = (int)PieceTypeEnum.KingBlack;
 		}
+
+		/*
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				print (piecesArray [i, j]+" ");
+			}
+			print ("\n");
+		}*/
 
 	}
 
@@ -202,8 +232,9 @@ public class ControlGame : MonoBehaviour
 
 	}
 
-	public void EfectuateListOfPlays (Piece p, List<MovementAction> listOfPlays)
+	public void EfectuateListOfPlays (List<MovementAction> listOfPlays)
 	{
+		
 		for (int i = 0; i < listOfPlays.Count; i++) {
 			movementsToGo.Enqueue (listOfPlays.ElementAt (i));
 		}
