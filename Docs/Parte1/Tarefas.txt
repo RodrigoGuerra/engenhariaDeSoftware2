@@ -1,0 +1,31 @@
+﻿EDUARDO: escopo do projeto e do produto, 
+FILLIPO: as estimativas de esforço e custo, o orçamento 
+RODRIGO: o cronograma de desenvolvimento
+MARCELO: a análise de riscos e slides
+ELIAS: monitoramento e controle do projeto
+versão parcial do produto
+
+Levantamento de Requisitos - 2.5
+elaboracao de modelos - 5
+definir cronogramas - 2
+analise de riscos - 1
+especificar custos - 3
+definir orçamento - 2
+verifica jogada (pilha estática) - 6
+verifica status - 5
+controller - 5
+mecanica - 8
+árvore de busca - 5
+jogador IA - 2
+peças - 3
+tabuleiro - 5
+interface - 2
+prototipagem - 8
+slides - 5
+testes - 8
+apresentacao - 2
+
+PLANEJAMENTO - 10 horas
+
+2.5 + 5 + 2 + 1 + 3 + 2 + 6 + 5 + 5 + 8 + 5 + 2 + 3 + 5 + 2 + 8 + 5 + 8 + 2 = 79.5
+79.5 * 120 = 9540
