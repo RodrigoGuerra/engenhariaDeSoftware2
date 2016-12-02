@@ -41,7 +41,12 @@ public class ControlGame : MonoBehaviour
 	private bool isMoving;
 	private House HouseToGo;
 	private Piece pieceToMove;
+	private bool alreadyMoved;
 
+	//Verifier
+	public int qntOfMovementsLeft;
+	public bool multipleMovements = false;
+	public Piece multipleMovementsPiece;
 
 	// Use this for initialization
 	void Start ()
@@ -80,8 +85,6 @@ public class ControlGame : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		
-
 		if (isMoving) {
 			
 			float step = (movementSpeed * 0.01f) * Time.deltaTime;
@@ -92,16 +95,24 @@ public class ControlGame : MonoBehaviour
 
 				isMoving = false;		
 				//Debug.Log ("ismoving =false, chegou na posicao");
-				piecesArray [pieceToMove.line, pieceToMove.column] = 0;
-				pieceToMove.column = HouseToGo.column;
-				pieceToMove.line = HouseToGo.line;
+			//	piecesArray [pieceToMove.line, pieceToMove.column] = 0;
+
+				//	pieceToMove.column = HouseToGo.column;
+				//	pieceToMove.line = HouseToGo.line;
+				pieceToMove.SetPosition (HouseToGo.line, HouseToGo.column);
 
 				GeneratePiecesArray ();
 				if (movementsToGo.Count == 0) {
-					//if there is no movements left to do, change turn
+					//if player has more than 1 movement left, decrease 1 unit
+					if (multipleMovements)
+						qntOfMovementsLeft--;
 
+					CheckMultipleMovements ();
 					Debug.Log ("Change turn.");
+
+					//if there is no movements left to do, change turn
 					ChangePlayersTurn ();
+
 					TurnOffAllHouses ();
 				} 
 
@@ -110,10 +121,6 @@ public class ControlGame : MonoBehaviour
 			}
 		
 		} else {
-
-			//after the movement animation update line and column of the piece moved
-
-
 			if (movementsToGo != null && movementsToGo.Count != 0) {
 
 				MovementAction m = movementsToGo.Dequeue ();
@@ -122,10 +129,27 @@ public class ControlGame : MonoBehaviour
 		}
 	}
 
+	public void CheckMultipleMovements ()
+	{
+	
+		if (multipleMovements) {
+			
+	
+			if (qntOfMovementsLeft == 0) {
+
+				multipleMovements = false;
+			} else {
+				Verifier.VerifyPlayByPiece (pieceToMove.line, pieceToMove.column, piecesArray, this);
+			}
+		}
+	}
+
 	public void TurnOffAllHouses ()
 	{
-		foreach (House h in houses) {
-			h.TurnOffLEDHouse ();
+		if (!multipleMovements) {
+			foreach (House h in houses) {
+				h.TurnOffLEDHouse ();
+			}
 		}
 	}
 
@@ -196,11 +220,14 @@ public class ControlGame : MonoBehaviour
 
 	public void ChangePlayersTurn ()
 	{
+		if (!multipleMovements) {
+			if (currentPlayerTurn.id == player1.id)
+				currentPlayerTurn = player2;
+			else
+				currentPlayerTurn = player1;
+		}
 
-		if (currentPlayerTurn.id == player1.id)
-			currentPlayerTurn = player2;
-		else
-			currentPlayerTurn = player1;
+		alreadyMoved = false;
 	}
 
 	private void ChooseTeamsRandomly ()
@@ -218,6 +245,12 @@ public class ControlGame : MonoBehaviour
 
 	public void GeneratePiecesArray ()
 	{
+		//clear piecesArray
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				piecesArray [i, j] = 0;
+			}
+		}
 		
 		foreach (Piece p in teamWhitePieces) {
 			if (p.CompareTag ("WhitePieceTag"))
@@ -233,13 +266,6 @@ public class ControlGame : MonoBehaviour
 				piecesArray [p.line, p.column] = (int)PieceTypeEnum.KingBlack;
 		}
 
-		/*
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 8; j++) {
-				print (piecesArray [i, j]+" ");
-			}
-			print ("\n");
-		}*/
 
 	}
 
@@ -247,19 +273,21 @@ public class ControlGame : MonoBehaviour
 	//Do not call this method directly if you need to make one movement, call EfectuateListofPlay and pass a list with one movement
 	private void EfectuatePlay (Piece piece, House houseToGo)
 	{
-		
 		if (!isMoving) {		
-	
-			GameObject p = piece.transform.parent.gameObject;
+
+			if (((houseToGo.line + piece.line) % 2) == 0 && ((houseToGo.column + piece.column) % 2) == 0) {
+				int l = (houseToGo.line + piece.line) / 2;
+				int c = (houseToGo.column + piece.column) / 2;
+			//	piecesArray [l, c] = 0;
+
+
+				SearchToDestroy (teamBlackPieces, l, c);
+				SearchToDestroy (teamWhitePieces, l, c);
+			}
 
 			HouseToGo = houseToGo;
 			pieceToMove = piece;
 
-
-			//for TESTING
-			//HouseToGo = housesArray [piece.line + 1, piece.column + 1];     
-
-			
 
 			isMoving = true;
 			//	Debug.Log ("ismoving =true, iniciou movimento");
@@ -268,13 +296,38 @@ public class ControlGame : MonoBehaviour
 
 	}
 
-	public void EfectuateListOfPlays (List<MovementAction> listOfPlays)
+	private void SearchToDestroy (List<Piece> team, int line, int column)
 	{
-		
-		for (int i = 0; i < listOfPlays.Count; i++) {
-			movementsToGo.Enqueue (listOfPlays.ElementAt (i));
+
+		Piece pieceToRemove = null;
+
+		foreach (Piece p in team) {
+			if (p.line == line && p.column == column) {
+
+				pieceToRemove = p;
+			}
+
 		}
 
+		if (pieceToRemove != null) {
+			team.Remove (pieceToRemove);
+			Destroy (pieceToRemove.gameObject);
+		}
+
+		GeneratePiecesArray ();
+	
+	}
+
+	public void EfectuateListOfPlays (List<MovementAction> listOfPlays)
+	{
+		if (!alreadyMoved) {
+			
+			for (int i = 0; i < listOfPlays.Count; i++) {
+				movementsToGo.Enqueue (listOfPlays.ElementAt (i));
+			}
+		
+			alreadyMoved = true;
+		}
 	}
 
 	public void VerifyStatus ()
@@ -357,6 +410,45 @@ public class ControlGame : MonoBehaviour
 
 	private void InstantiateHousesAndPieces ()
 	{
+	}
+
+	public void GrantQueenPiece (Piece p, bool white)
+	{
+		if (white) {
+			GameObject whites = GameObject.Find ("Whites");
+
+			GameObject q = (GameObject)Instantiate (Resources.Load ("Prefabs/WhiteKingChecker_T"));
+			q.transform.SetParent (whites.transform);
+			q.transform.position = new Vector3 (p.gameObject.transform.position.x, p.gameObject.transform.position.y, p.gameObject.transform.position.z);
+			Piece piece = q.GetComponent<Piece> ();
+			piece.column = p.column;
+			piece.line = p.line;
+			piece.isQueen = true;
+			SearchToDestroy (teamWhitePieces, p.line, p.column);
+
+			teamWhitePieces.Add (piece);
+
+
+
+		} else {
+
+			GameObject blacks = GameObject.Find ("Blacks");
+
+			GameObject q = (GameObject)Instantiate (Resources.Load ("Prefabs/BlackKingChecker_T"));
+			q.transform.SetParent (blacks.transform);
+			q.transform.position = new Vector3 (p.gameObject.transform.position.x, p.gameObject.transform.position.y, p.gameObject.transform.position.z);
+			Piece piece = q.GetComponent<Piece> ();
+			piece.column = p.column;
+			piece.line = p.line;
+			piece.isQueen = true;
+			SearchToDestroy (teamBlackPieces, p.line, p.column);
+
+			teamBlackPieces.Add (piece);
+
+		}
+
+		GeneratePiecesArray ();
+
 	}
 
 }

@@ -31,9 +31,9 @@ public class House : MonoBehaviour
 	
 	}
 
-	public void TurnOnLEDHouse ()
+	public void TurnOnLEDHouse (bool firstHouse)
 	{
-		this.isHighlighted = true;
+		this.isHighlighted = firstHouse;
 
 		MeshRenderer rend = GetComponent<MeshRenderer> ();        
 		rend.material = highlightedMaterial;

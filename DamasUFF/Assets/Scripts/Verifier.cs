@@ -39,17 +39,43 @@ public class Verifier : MonoBehaviour
 		}
 
 		if (cg != null) {
-			
+
+			int[] vet = new int[2];
+			vet [0] = i;
+			vet [1] = j;
+
+			int maxCount = MaxCount (plays, vet);                        
+
 			foreach (List<int[]> l in plays) {
+				
 				foreach (int[] item in l) {
 					int linha = item [0]; //linha
 					int coluna = item [1]; //coluna
 
 					//Debug.Log ("{" + linha + "," + coluna + "} ");
-					cg.housesArray[linha,coluna].TurnOnLEDHouse();
+
+					//Se a jogada for a máxima
+					if (Count (l, vet) == maxCount) {
+						bool firstHouse = false;
+
+
+						if (item == l [0]) {
+							firstHouse = true;
+						
+
+						}
+						cg.housesArray [linha, coluna].TurnOnLEDHouse (firstHouse);
+
+						if (maxCount > 1 && (item == l [l.Count - 1])) {
+							cg.multipleMovements = true;
+						
+							cg.qntOfMovementsLeft = maxCount;
+						}
+						
+					}
 
 				}
-			//	Debug.Log ("------------------------------------------------");
+				//	Debug.Log ("------------------------------------------------");
 			}
 
 			m [i, j] = temp;
@@ -65,19 +91,19 @@ public class Verifier : MonoBehaviour
 			opponentColor = 1;
 		}
 
-		m [i, j] = 0;
+		//	m [i, j] = 0;
 
 		//Jogada para trás
 		//Direita
-		PlayDirection (plays, m, max, opponentColor, i, j, d, isKing, isKing, 1, 1, "pd_BR", color);
+		PlayDirection (plays, m, max, opponentColor, i, j, d, isKing, true, 1, 1, "pd_BR", color);
 		//Esquerda
-		PlayDirection (plays, m, max, opponentColor, i, j, d, isKing, isKing, 1, -1, "pd_BL", color);
+		PlayDirection (plays, m, max, opponentColor, i, j, d, isKing, true, 1, -1, "pd_BL", color);
 
 		//Jogada para frente
 		//Direita
-		PlayDirection (plays, m, max, opponentColor, i, j, d, isKing, isKing, -1, 1, "pd_FR", color);
+		PlayDirection (plays, m, max, opponentColor, i, j, d, isKing, false, -1, 1, "pd_FR", color);
 		//Esquerda
-		PlayDirection (plays, m, max, opponentColor, i, j, d, isKing, isKing, -1, -1, "pd_FL", color);
+		PlayDirection (plays, m, max, opponentColor, i, j, d, isKing, false, -1, -1, "pd_FL", color);
 
 		return plays;
 	}
@@ -311,7 +337,7 @@ public class Verifier : MonoBehaviour
 				if (Compare (i + signal_line * 2 * k * d, j + signal_column * 2 * k, m, 0)) {
 					tab [i + k * d, j + k] = 0;
 
-					int[] position = { i + 2 * k * d, j + signal_column * 2 * k };
+					int[] position = { i + signal_line * 2 * k * d, j + signal_column * 2 * k };
 
 					play.Add (position);
 
