@@ -374,7 +374,7 @@ public class Verifier : MonoBehaviour
 		int[,] tab = MatchTab (m);
 		bool ate = false;
 		for (int k = 1; k < max; k++) {			
-			if (Compare (i + signal_line * k * d, j + signal_column * k, tab, opponentColor) || Compare (i + k * d, j + k, tab, opponentColor + 2)) {
+			if (Compare (i + signal_line * k * d, j + signal_column * k, tab, opponentColor) || Compare (i + signal_line * k * d, j + signal_column * k, tab, opponentColor + 2)) {
 				if (Compare (i + signal_line * 2 * k * d, j + signal_column * 2 * k, tab, 0)) {
 					tab [i + signal_line * k * d, j + signal_column * k] = 0;
 
