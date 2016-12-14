@@ -327,32 +327,32 @@ public class Verifier : MonoBehaviour
 	}
 
 	public static void PlayDirection (List<List<int[]>> plays, int[,] m, int max, int opponentColor, int i, int j, int d, bool isKing, bool isBackward, int signal_line, int signal_column, string name, int color)
-	{
+	{				
 		List<int[]> play = new List<int[]> ();
 		List<List<int[]>> tempPlays = new List<List<int[]>> ();
 		int[,] tab = MatchTab (m);
 		bool ate = false;
 		for (int k = 1; k < max; k++) {			
-			if (Compare (i + signal_line * k * d, j + signal_column * k, tab, opponentColor) || Compare (i + signal_line * k * d, j + signal_column * k, tab, opponentColor + 2)) {
-				if (Compare (i + signal_line * 2 * k * d, j + signal_column * 2 * k, m, 0)) {
-					tab [i + k * d, j + k] = 0;
+			if (Compare (i + signal_line * k * d, j + signal_column * k, tab, opponentColor) || 
+				Compare (i + signal_line * k * d, j + signal_column * k, tab, opponentColor + 2)) {
+				if (Compare (i + (k + 1) * signal_line * d, j + signal_column * (k + 1), m, 0)) {
+					tab [i + signal_line * k * d, j + signal_column * k] = 0;
 
-					int[] position = { i + signal_line * 2 * k * d, j + signal_column * 2 * k };
-
+					int[] position = { i + signal_line * (k + 1) * d, j + signal_column * (k + 1) };
 					play.Add (position);
 
-					AddAtTheEnd (tempPlays, ConcatListOfPlays (play, EatPiece (i + signal_line * 2 * k * d, j + signal_column * 2 * k, max, tab, d, play, false, name, color)));
+					AddAtTheEnd (tempPlays, ConcatListOfPlays (play, EatPiece (i + signal_line * (k + 1) * d, j + signal_column * (k + 1), max, tab, d, play, false, name, color)));
 
 					ate = true;
 					k++;
 				} else {
 					k = max;
 				}
-			} else if (Compare (i + signal_line * k * d, j + signal_column * k, tab, 0) && ((isKing && isBackward) || (!isBackward))) {
+			} else if (Compare (i + signal_line * k * d, j + signal_column * k, tab, 0) && 
+							   ((isKing && isBackward) || (!isBackward))) {
 				tab [i + signal_line * k * d, j + signal_column * k] = color;
 
 				int[] posicao = { i + signal_line * k * d, j + signal_column * k };
-
 				play.Add (posicao);
 
 				if (ate) {
@@ -375,13 +375,13 @@ public class Verifier : MonoBehaviour
 		bool ate = false;
 		for (int k = 1; k < max; k++) {			
 			if (Compare (i + signal_line * k * d, j + signal_column * k, tab, opponentColor) || Compare (i + signal_line * k * d, j + signal_column * k, tab, opponentColor + 2)) {
-				if (Compare (i + signal_line * 2 * k * d, j + signal_column * 2 * k, tab, 0)) {
+				if (Compare (i + signal_line * (k + 1) * d, j + signal_column * (k + 1), tab, 0)) {
 					tab [i + signal_line * k * d, j + signal_column * k] = 0;
 
-					int[] posicao = { i + signal_line * 2 * k * d, j + signal_column * 2 * k };
+					int[] posicao = { i + signal_line * (k + 1) * d, j + signal_column * (k + 1) };
 
 					play1.Add (posicao);
-					AddAtTheEnd (tempPlays, ConcatListOfPlays (play1, EatPiece (i + signal_line * 2 * k * d, j + signal_column * 2 * k, max, tab, d, play1, false, name, color)));
+					AddAtTheEnd (tempPlays, ConcatListOfPlays (play1, EatPiece (i + signal_line * (k + 1) * d, j + signal_column * (k + 1), max, tab, d, play1, false, name, color)));
 					ate = true;
 					k++;
 				} else {
