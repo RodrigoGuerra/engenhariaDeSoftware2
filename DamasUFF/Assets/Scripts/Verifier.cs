@@ -64,7 +64,15 @@ public class Verifier : MonoBehaviour
 						
 
 						}
-						cg.housesArray [linha, coluna].TurnOnLEDHouse (firstHouse);
+
+						if (temp == (int)PieceTypeEnum.Black || temp == (int)PieceTypeEnum.White) {
+							cg.housesArray [linha, coluna].TurnOnLEDHouse (firstHouse);
+
+						} else {
+							cg.housesArray [linha, coluna].TurnOnLEDHouse (true);
+
+						}
+
 
 						if (maxCount > 1 && (item == l [l.Count - 1])) {
 							cg.multipleMovements = true;

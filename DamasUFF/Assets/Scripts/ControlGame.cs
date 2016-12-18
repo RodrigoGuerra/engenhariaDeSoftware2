@@ -6,6 +6,8 @@ using System.Linq;
 
 public class ControlGame : MonoBehaviour
 {
+	private bool testmode;
+
 	//Verifier class
 
 
@@ -85,29 +87,39 @@ public class ControlGame : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		//Checks if game is updating position of a piece
 		if (isMoving) {
 			
 			float step = (movementSpeed * 0.01f) * Time.deltaTime;
 
 			Vector3 positionToGo = new Vector3 (HouseToGo.transform.position.x, 0.15f, HouseToGo.transform.position.z);
 			pieceToMove.transform.position = Vector3.MoveTowards (pieceToMove.transform.position, positionToGo, step);
+
+			//Piece arrived at desired position
 			if (pieceToMove.transform.position == positionToGo) {
 
 				isMoving = false;		
 				//Debug.Log ("ismoving =false, chegou na posicao");
-			//	piecesArray [pieceToMove.line, pieceToMove.column] = 0;
+				//	piecesArray [pieceToMove.line, pieceToMove.column] = 0;
 
 				//	pieceToMove.column = HouseToGo.column;
 				//	pieceToMove.line = HouseToGo.line;
+
 				pieceToMove.SetPosition (HouseToGo.line, HouseToGo.column);
 
+				//Update Array to AI and Verifier
 				GeneratePiecesArray ();
+
+				//Check if there is no movement left on movement queue
 				if (movementsToGo.Count == 0) {
+					
 					//if player has more than 1 movement left, decrease 1 unit
 					if (multipleMovements)
 						qntOfMovementsLeft--;
 
+					//check if play has multiple captures (if does, cant change turn until that amount of captures has been done)
 					CheckMultipleMovements ();
+
 					Debug.Log ("Change turn.");
 
 					//if there is no movements left to do, change turn
@@ -120,7 +132,9 @@ public class ControlGame : MonoBehaviour
 
 			}
 		
-		} else {
+		} else {//if not, then check if movements queue has any movements to do
+
+
 			if (movementsToGo != null && movementsToGo.Count != 0) {
 
 				MovementAction m = movementsToGo.Dequeue ();
@@ -220,6 +234,11 @@ public class ControlGame : MonoBehaviour
 
 	public void ChangePlayersTurn ()
 	{
+		bool endgame = VerifyStatus ();
+
+		if (endgame)
+			EndGame ();
+
 		if (!multipleMovements) {
 			if (currentPlayerTurn.id == player1.id)
 				currentPlayerTurn = player2;
@@ -228,6 +247,23 @@ public class ControlGame : MonoBehaviour
 		}
 
 		alreadyMoved = false;
+
+	/*	if (currentPlayerTurn.color == Color.black)
+			VerifyForEachPiece (teamBlackPieces);
+		else
+			VerifyForEachPiece(teamWhitePieces);
+*/
+	}
+
+	private void VerifyForEachPiece(List<Piece> team)
+	{
+		foreach(Piece p in team)
+			Verifier.VerifyPlayByPiece (p.line, p.column, piecesArray, this);
+	}
+
+	private void EndGame ()
+	{
+		//Stop and show scores
 	}
 
 	private void ChooseTeamsRandomly ()
@@ -278,7 +314,7 @@ public class ControlGame : MonoBehaviour
 			if (((houseToGo.line + piece.line) % 2) == 0 && ((houseToGo.column + piece.column) % 2) == 0) {
 				int l = (houseToGo.line + piece.line) / 2;
 				int c = (houseToGo.column + piece.column) / 2;
-			//	piecesArray [l, c] = 0;
+				//	piecesArray [l, c] = 0;
 
 
 				SearchToDestroy (teamBlackPieces, l, c);
@@ -330,9 +366,13 @@ public class ControlGame : MonoBehaviour
 		}
 	}
 
-	public void VerifyStatus ()
+	//return true if game ended
+	public bool VerifyStatus ()
 	{
+		if (teamBlackPieces.Count () > 0 || teamWhitePieces.Count () > 0)
+			return false;
 
+		return true;
 
 	}
 
