@@ -50,6 +50,8 @@ public class ControlGame : MonoBehaviour
 	public bool multipleMovements = false;
 	public Piece multipleMovementsPiece;
 
+
+	public List<int[]> listOfMovements;
 	// Use this for initialization
 	void Start ()
 	{
@@ -58,6 +60,7 @@ public class ControlGame : MonoBehaviour
 		houses = new List<House> ();
 		houses = board.GetComponentsInChildren<House> ().ToList ();
 		movementsToGo = new Queue<MovementAction> ();
+		listOfMovements = new List<int[]> ();
 		housesArray = new House[8, 8];
 
 		piecesArray = new int[8, 8];
@@ -112,13 +115,42 @@ public class ControlGame : MonoBehaviour
 
 				//Check if there is no movement left on movement queue
 				if (movementsToGo.Count == 0) {
-					
+
+
+					int p = PositionHouseOnList (pieceToMove.line, pieceToMove.column);
+					if (qntOfMovementsLeft == 1) {
+						
+						for (int i = 0; i < listOfMovements.Count (); i++) {
+							int[] v = listOfMovements [i];
+							housesArray [v [0], v [1]].isEnabledToMove = false;
+						}
+
+						for (int i = p + 1; i < listOfMovements.Count (); i++) {
+							int[] v = listOfMovements [i];
+							housesArray [v [0], v [1]].isEnabledToMove = true;
+						}
+					} else {
+						if (qntOfMovementsLeft > 1) {
+
+							for (int i = 0; i < listOfMovements.Count (); i++) {
+								int[] v = listOfMovements [i];
+								housesArray [v [0], v [1]].isEnabledToMove = false;
+							}
+
+							int[] vetor = listOfMovements [p + 1];
+							housesArray [vetor [0], vetor [1]].isEnabledToMove = true;
+						}
+					}								
+
 					//if player has more than 1 movement left, decrease 1 unit
-					if (multipleMovements)
-						qntOfMovementsLeft--;
+					//	if (multipleMovements)
+					//		qntOfMovementsLeft--;
+
+					CheckMultipleMovements ();
+
 
 					//check if play has multiple captures (if does, cant change turn until that amount of captures has been done)
-					CheckMultipleMovements ();
+
 
 					Debug.Log ("Change turn.");
 
@@ -143,17 +175,33 @@ public class ControlGame : MonoBehaviour
 		}
 	}
 
+	private int PositionHouseOnList (int line, int column)
+	{
+		int positionOnlist = 0;
+		foreach (int[] v in listOfMovements) {
+
+			if (v [0] == line && v [1] == column) {
+				return positionOnlist;
+			}
+
+			positionOnlist++;
+		}
+		return -1;
+
+	}
+
 	public void CheckMultipleMovements ()
 	{
 	
 		if (multipleMovements) {
 			
 	
-			if (qntOfMovementsLeft == 0) {
+			if (qntOfMovementsLeft <= 0) {
 
 				multipleMovements = false;
 			} else {
-				Verifier.VerifyPlayByPiece (pieceToMove.line, pieceToMove.column, piecesArray, this);
+				if (pieceToMove.CompareTag ("WhitePieceTag") || pieceToMove.CompareTag ("BlackPieceTag"))
+					Verifier.VerifyPlayByPiece (pieceToMove.line, pieceToMove.column, piecesArray, this);
 			}
 		}
 	}
@@ -248,16 +296,16 @@ public class ControlGame : MonoBehaviour
 
 		alreadyMoved = false;
 
-	/*	if (currentPlayerTurn.color == Color.black)
+		/*	if (currentPlayerTurn.color == Color.black)
 			VerifyForEachPiece (teamBlackPieces);
 		else
 			VerifyForEachPiece(teamWhitePieces);
 */
 	}
 
-	private void VerifyForEachPiece(List<Piece> team)
+	private void VerifyForEachPiece (List<Piece> team)
 	{
-		foreach(Piece p in team)
+		foreach (Piece p in team)
 			Verifier.VerifyPlayByPiece (p.line, p.column, piecesArray, this);
 	}
 
@@ -348,6 +396,8 @@ public class ControlGame : MonoBehaviour
 		if (pieceToRemove != null) {
 			team.Remove (pieceToRemove);
 			Destroy (pieceToRemove.gameObject);
+			if (qntOfMovementsLeft > 0)
+				qntOfMovementsLeft--;
 		}
 
 		GeneratePiecesArray ();
@@ -416,7 +466,7 @@ public class ControlGame : MonoBehaviour
 				k = alterna ? 1 : 0;
 				while (k < 8) {
 				
-					GameObject p = (GameObject)Instantiate (Resources.Load ("Prefabs/WhiteMenChecker_T"));
+					GameObject p = (GameObject)Instantiate (Resources.Load ("Prefabs/WhiteKingChecker_T"));
 					p.transform.SetParent (teamWhite.transform);
 					p.transform.position = new Vector3 ((float)housesArray [i, k].transform.position.x, 0.15f, (float)housesArray [i, k].transform.position.z);
 					Piece piece = p.GetComponent<Piece> ();

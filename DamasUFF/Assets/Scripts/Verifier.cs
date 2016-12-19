@@ -46,6 +46,8 @@ public class Verifier : MonoBehaviour
 
 			int maxCount = MaxCount (plays, vet);                        
 
+
+
 			foreach (List<int[]> l in plays) {
 				
 				foreach (int[] item in l) {
@@ -66,10 +68,22 @@ public class Verifier : MonoBehaviour
 						}
 
 						if (temp == (int)PieceTypeEnum.Black || temp == (int)PieceTypeEnum.White) {
+							
+
 							cg.housesArray [linha, coluna].TurnOnLEDHouse (firstHouse);
 
 						} else {
-							cg.housesArray [linha, coluna].TurnOnLEDHouse (true);
+							if (maxCount > 0) {
+								cg.housesArray [linha, coluna].TurnOnLEDHouse (firstHouse);
+
+								cg.multipleMovements = true;
+								cg.qntOfMovementsLeft = maxCount;
+
+
+								cg.listOfMovements = l;
+							} else {
+								cg.housesArray [linha, coluna].TurnOnLEDHouse (true);
+							}
 
 						}
 

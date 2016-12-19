@@ -14,9 +14,9 @@ public class House : MonoBehaviour
 
 	public Material normalMaterial;
 
-	public bool isHighlighted = false;
+	public bool isEnabledToMove = false;
 
-
+	public bool isPainted=false;
 	// Use this for initialization
 	void Start ()
 	{
@@ -33,18 +33,21 @@ public class House : MonoBehaviour
 
 	public void TurnOnLEDHouse (bool firstHouse)
 	{
-		this.isHighlighted = firstHouse;
+		this.isEnabledToMove = firstHouse;
+
 
 		MeshRenderer rend = GetComponent<MeshRenderer> ();        
 		rend.material = highlightedMaterial;
+		isPainted = true;
 		//set LED color
 	}
 
 	public void TurnOffLEDHouse ()
 	{
-		this.isHighlighted = false;
+		this.isEnabledToMove = false;
 		MeshRenderer rend = GetComponent<MeshRenderer> ();        
 		rend.material = normalMaterial;
+		isPainted = false;
 		//set LED off
 	}
 
@@ -66,7 +69,7 @@ public class House : MonoBehaviour
 				if (hit.collider.gameObject.GetComponent<House> () != null
 				   && hit.collider.gameObject.GetComponent<House> () == this) {
 					//controlGame gets the reference of last piece clicked by mouse
-					if (this.isHighlighted) {
+					if (this.isEnabledToMove) {
 						MovementAction m = new MovementAction ();
 						m.houseToGo = this;
 						m.piece = controlGame.selectedPiece;
