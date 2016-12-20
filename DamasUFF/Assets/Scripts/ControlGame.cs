@@ -43,16 +43,21 @@ public class ControlGame : MonoBehaviour
 	private bool isMoving;
 	private House HouseToGo;
 	public Piece pieceToMove;
-	private bool alreadyMoved = false;
+	public bool alreadyMoved = false;
 
 	//Verifier
 	public int qntOfMovementsLeft;
 	public bool multipleMovements = false;
 	public Piece multipleMovementsPiece;
+	public List<Piece> maxPlayForPlayer = new List<Piece> ();
 
 
 	private bool _AIHasPlayed;
 	public List<int[]> listOfMovements;
+
+
+	public int countPlays = 0;
+	private bool drawScenario = false;
 	// Use this for initialization
 	void Start ()
 	{
@@ -85,7 +90,7 @@ public class ControlGame : MonoBehaviour
 			}
 		}
 			
-		StartGame (GameTypeEnum.PlayerVsAI, DifficultyEnum.Normal);
+		StartGame (GameTypeEnum.PlayerVsPlayer, DifficultyEnum.Normal);
 	}
 	
 	// Update is called once per frame
@@ -132,6 +137,7 @@ public class ControlGame : MonoBehaviour
 								int[] v = listOfMovements [i];
 								housesArray [v [0], v [1]].SetIsEnabledToMove (true);
 							}
+
 						} else {
 							if (qntOfMovementsLeft > 1) {
 
@@ -151,7 +157,7 @@ public class ControlGame : MonoBehaviour
 
 						CheckMultipleMovements ();
 
-
+						pieceToMove.CheckQueen ();
 						//check if play has multiple captures (if does, cant change turn until that amount of captures has been done)
 
 
@@ -324,7 +330,7 @@ public class ControlGame : MonoBehaviour
 
 	public void TurnOffAllHouses ()
 	{
-		if (!multipleMovements) {
+		if (!alreadyMoved) {
 			foreach (House h in houses) {
 				h.TurnOffLEDHouse ();
 			}
@@ -393,15 +399,30 @@ public class ControlGame : MonoBehaviour
 	{
 		
 		currentPlayerTurn = first;
+		GetMaxPlay (currentPlayerTurn.color);
 	}
 
 
 	public void ChangePlayersTurn ()
 	{
-		bool endgame = VerifyStatus ();
+		Status gameStatus = VerifyStatus ();
 
-		if (endgame)
-			EndGame ();
+		switch (gameStatus) {
+		case Status.Continue:
+			break;
+		case Status.Draw:
+			Draw ();
+			break;
+		case Status.WinBlack:
+			Win (Color.black);
+			break;
+		case Status.WinWhite:
+			Win (Color.white);
+			break;
+
+
+		}
+	
 
 		if (!multipleMovements) {
 			Debug.Log ("Change turn.");
@@ -411,10 +432,27 @@ public class ControlGame : MonoBehaviour
 				currentPlayerTurn = player2;
 			else
 				currentPlayerTurn = player1;
+
+			_AIHasPlayed = false;
+			alreadyMoved = false;
+
+			if (drawScenario) {
+				countPlays++;
+			}
+
+			foreach(Piece pp in maxPlayForPlayer){
+				pp.ShutHighlightedPiece ();
+			}
+			maxPlayForPlayer.Clear ();
+
+			if (currentPlayerTurn is Person) {
+				
+				//max =  GetMaxPlay ();
+				GetMaxPlay (currentPlayerTurn.color);
+			}
 		}
 
-		_AIHasPlayed = false;
-		alreadyMoved = false;
+
 
 		/*	if (currentPlayerTurn.color == Color.black)
 			VerifyForEachPiece (teamBlackPieces);
@@ -423,15 +461,91 @@ public class ControlGame : MonoBehaviour
 */
 	}
 
+	private void GetMaxPlay (Color c)
+	{
+
+		int max = 0;
+
+		if (c == Color.black) {		
+
+			foreach (Piece p in teamBlackPieces) {
+				int[] v = new int[2];
+				v [0] = p.line;
+				v [1] = p.column;
+
+				int cont = Verifier.MaxCount (Verifier.VerifyPlayByPiece (p.line, p.column, piecesArray, null), v);
+				if (cont >= max) {
+					
+					if (cont > max) {
+						max = cont;
+				
+						maxPlayForPlayer.Clear ();
+					}
+
+					maxPlayForPlayer.Add (p);
+
+				}
+			}
+
+			if (maxPlayForPlayer.Count < teamBlackPieces.Count) {
+				foreach (Piece pp in maxPlayForPlayer) {
+					pp.SetHighlightedPiece ();
+				}
+			}
+
+		} else {
+			foreach (Piece p in teamWhitePieces) {
+				int[] v = new int[2];
+				v [0] = p.line;
+				v [1] = p.column;
+
+				int cont = Verifier.MaxCount (Verifier.VerifyPlayByPiece (p.line, p.column, piecesArray, null), v);
+				if (cont >= max) {
+
+					if (cont > max) {
+						max = cont;
+
+
+					
+						maxPlayForPlayer.Clear ();
+					}
+
+					maxPlayForPlayer.Add (p);
+
+				}
+			}
+
+			if (maxPlayForPlayer.Count < teamWhitePieces.Count) {
+				foreach (Piece pp in maxPlayForPlayer) {
+					pp.SetHighlightedPiece ();
+				}
+			}
+		}
+
+
+	}
+
 	private void VerifyForEachPiece (List<Piece> team)
 	{
 		foreach (Piece p in team)
 			Verifier.VerifyPlayByPiece (p.line, p.column, piecesArray, this);
 	}
 
-	private void EndGame ()
+	private void Draw ()
+	{
+		Debug.Log ("draw");
+		//display draw hud
+	}
+
+	private void Win (Color winColor)
 	{
 		//Stop and show scores
+
+		if (winColor == Color.white) {
+			Debug.Log ("brancas vencedoras");
+		} else {
+			Debug.Log ("pretas vencedoras");
+		}
 	}
 
 	private void ChooseTeamsRandomly ()
@@ -611,23 +725,13 @@ public class ControlGame : MonoBehaviour
 
 	public void EfectuateListOfPlays (List<MovementAction> listOfPlays)
 	{
-		if (!alreadyMoved) {
-			
-			for (int i = 0; i < listOfPlays.Count; i++) {
-				movementsToGo.Enqueue (listOfPlays.ElementAt (i));
-			}
 		
-			alreadyMoved = true;
+			
+		for (int i = 0; i < listOfPlays.Count; i++) {
+			movementsToGo.Enqueue (listOfPlays.ElementAt (i));
 		}
-	}
-
-	//return true if game ended
-	public bool VerifyStatus ()
-	{
-		if (teamBlackPieces.Count () > 0 || teamWhitePieces.Count () > 0)
-			return false;
-
-		return true;
+		
+		alreadyMoved = true;
 
 	}
 
@@ -709,42 +813,81 @@ public class ControlGame : MonoBehaviour
 
 	public void GrantQueenPiece (Piece p, bool white)
 	{
-		if (!isMoving && qntOfMovementsLeft <= 0 && !multipleMovements) {
-			if (white) {
-				GameObject whites = GameObject.Find ("Whites");
+		
+		if (white) {
+			GameObject whites = GameObject.Find ("Whites");
 
-				GameObject q = (GameObject)Instantiate (Resources.Load ("Prefabs/WhiteKingChecker_T"));
-				q.transform.SetParent (whites.transform);
-				q.transform.position = new Vector3 (p.gameObject.transform.position.x, p.gameObject.transform.position.y, p.gameObject.transform.position.z);
-				Piece piece = q.GetComponent<Piece> ();
-				piece.column = p.column;
-				piece.line = p.line;
-				piece.isQueen = true;
-				SearchToDestroy (teamWhitePieces, p.line, p.column);
+			GameObject q = (GameObject)Instantiate (Resources.Load ("Prefabs/WhiteKingChecker_T"));
+			q.transform.SetParent (whites.transform);
+			q.transform.position = new Vector3 (p.gameObject.transform.position.x, p.gameObject.transform.position.y, p.gameObject.transform.position.z);
+			Piece piece = q.GetComponent<Piece> ();
+			piece.column = p.column;
+			piece.line = p.line;
+			piece.isQueen = true;
+			SearchToDestroy (teamWhitePieces, p.line, p.column);
 
-				teamWhitePieces.Add (piece);
+			teamWhitePieces.Add (piece);
 
 
 
-			} else {
+		} else {
 
-				GameObject blacks = GameObject.Find ("Blacks");
+			GameObject blacks = GameObject.Find ("Blacks");
 
-				GameObject q = (GameObject)Instantiate (Resources.Load ("Prefabs/BlackKingChecker_T"));
-				q.transform.SetParent (blacks.transform);
-				q.transform.position = new Vector3 (p.gameObject.transform.position.x, p.gameObject.transform.position.y, p.gameObject.transform.position.z);
-				Piece piece = q.GetComponent<Piece> ();
-				piece.column = p.column;
-				piece.line = p.line;
-				piece.isQueen = true;
-				SearchToDestroy (teamBlackPieces, p.line, p.column);
+			GameObject q = (GameObject)Instantiate (Resources.Load ("Prefabs/BlackKingChecker_T"));
+			q.transform.SetParent (blacks.transform);
+			q.transform.position = new Vector3 (p.gameObject.transform.position.x, p.gameObject.transform.position.y, p.gameObject.transform.position.z);
+			Piece piece = q.GetComponent<Piece> ();
+			piece.column = p.column;
+			piece.line = p.line;
+			piece.isQueen = true;
+			SearchToDestroy (teamBlackPieces, p.line, p.column);
 
-				teamBlackPieces.Add (piece);
+			teamBlackPieces.Add (piece);
 
+		}
+
+		GeneratePiecesArray ();
+	}
+
+
+
+	public Status VerifyStatus ()
+	{
+		Status status = Status.Continue;
+		if (teamBlackPieces.Count () > 0 && teamWhitePieces.Count () > 0
+		    && teamBlackPieces.Count () <= 2 && teamWhitePieces.Count () <= 2) {
+
+			if (!drawScenario) {
+				drawScenario = true;
 			}
 
-			GeneratePiecesArray ();
+			int countBlackQueen = 0;
+			int countWhiteQueen = 0;
+			int i;
+			for (i = 0; i < teamBlackPieces.Count (); i++) {
+				if (teamBlackPieces.ElementAt (i).tag.Equals ("BlackQueenTag"))
+					countBlackQueen++;    
+			}
+			for (i = 0; i < teamWhitePieces.Count (); i++) {
+				if (teamWhitePieces.ElementAt (i).tag.Equals ("WhiteQueenTag"))
+					countWhiteQueen++;    
+			}
+			if (countBlackQueen >= 1 && countWhiteQueen >= 1 && countPlays >= 4) {   
+				status = Status.Draw;
+			}
+		} else {
+			if (teamBlackPieces.Count () == 0 && teamWhitePieces.Count () > 0) {
+				status = Status.WinWhite;
+			}
+			if (teamWhitePieces.Count () == 0 && teamBlackPieces.Count () > 0) {
+				status = Status.WinBlack;
+			}
 		}
+
+		return status;
+
 	}
+
 
 }

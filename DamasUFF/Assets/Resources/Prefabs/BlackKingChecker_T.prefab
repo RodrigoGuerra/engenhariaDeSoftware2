@@ -108,3 +108,5 @@ MonoBehaviour:
   color: {r: 0, g: 0, b: 0, a: 0}
   line: 0
   column: 0
+  highlightedMaterial: {fileID: 2100000, guid: 30959ef478f51d44895a8c0876d276b9, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 80137c0d9d9763543a5967752757b346, type: 2}

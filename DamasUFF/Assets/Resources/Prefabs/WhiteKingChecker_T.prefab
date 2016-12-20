@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180720}
   m_LocalRotation: {x: 0.0000018099951, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.5, y: 0.14, z: -3.5}
+  m_LocalPosition: {x: 0.29, y: 0.8, z: 0.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -108,3 +108,5 @@ MonoBehaviour:
   color: {r: 0, g: 0, b: 0, a: 0}
   line: 0
   column: 0
+  highlightedMaterial: {fileID: 2100000, guid: 30959ef478f51d44895a8c0876d276b9, type: 2}
+  normalMaterial: {fileID: 2100000, guid: 80137c0d9d9763543a5967752757b346, type: 2}

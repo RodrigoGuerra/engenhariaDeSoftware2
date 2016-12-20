@@ -74,13 +74,23 @@ public class Verifier : MonoBehaviour
 
 						} else {
 							if (maxCount > 0) {
-								cg.housesArray [linha, coluna].TurnOnLEDHouse (firstHouse);
+								if (maxCount == 1) {
+									cg.housesArray [linha, coluna].TurnOnLEDHouse (true);
 
-								cg.multipleMovements = true;
-								cg.qntOfMovementsLeft = maxCount;
+									cg.multipleMovements = false;
+									cg.qntOfMovementsLeft = maxCount;
 
 
-								cg.listOfMovements = l;
+									cg.listOfMovements = l;
+								} else {
+									cg.housesArray [linha, coluna].TurnOnLEDHouse (firstHouse);
+								
+									cg.multipleMovements = true;
+									cg.qntOfMovementsLeft = maxCount;
+
+
+									cg.listOfMovements = l;
+								}
 							} else {
 								cg.housesArray [linha, coluna].TurnOnLEDHouse (true);
 							}
@@ -90,7 +100,7 @@ public class Verifier : MonoBehaviour
 
 						if (maxCount > 1 && (item == l [l.Count - 1])) {
 							cg.multipleMovements = true;
-						
+							cg.listOfMovements = l;
 							cg.qntOfMovementsLeft = maxCount;
 						}
 						
@@ -329,9 +339,9 @@ public class Verifier : MonoBehaviour
 		}	
 
 		if (plays.Count > 0) {
-			l = plays[plays.Count - 1][0];
-			c = plays[plays.Count - 1][1];            
-			resp[l,c] = type;
+			l = plays [plays.Count - 1] [0];
+			c = plays [plays.Count - 1] [1];            
+			resp [l, c] = type;
 		}
 
 		return resp;
@@ -361,8 +371,8 @@ public class Verifier : MonoBehaviour
 		int[,] tab = MatchTab (m);
 		bool ate = false;
 		for (int k = 1; k < max; k++) {			
-			if (Compare (i + signal_line * k * d, j + signal_column * k, tab, opponentColor) || 
-				Compare (i + signal_line * k * d, j + signal_column * k, tab, opponentColor + 2)) {
+			if (Compare (i + signal_line * k * d, j + signal_column * k, tab, opponentColor) ||
+			    Compare (i + signal_line * k * d, j + signal_column * k, tab, opponentColor + 2)) {
 				if (Compare (i + (k + 1) * signal_line * d, j + signal_column * (k + 1), m, 0)) {
 					tab [i + signal_line * k * d, j + signal_column * k] = 0;
 
@@ -376,8 +386,8 @@ public class Verifier : MonoBehaviour
 				} else {
 					k = max;
 				}
-			} else if (Compare (i + signal_line * k * d, j + signal_column * k, tab, 0) && 
-							   ((isKing && isBackward) || (!isBackward))) {
+			} else if (Compare (i + signal_line * k * d, j + signal_column * k, tab, 0) &&
+			           ((isKing && isBackward) || (!isBackward))) {
 				tab [i + signal_line * k * d, j + signal_column * k] = color;
 
 				int[] posicao = { i + signal_line * k * d, j + signal_column * k };

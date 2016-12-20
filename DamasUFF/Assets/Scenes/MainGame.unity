@@ -185,8 +185,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &46621179
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,8 +284,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &85579395
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,8 +383,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &108709082
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,8 +482,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &164312867
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,8 +581,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &165713081
 GameObject:
   m_ObjectHideFlags: 0
@@ -670,8 +680,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &175660115
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,8 +779,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &204242521
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,8 +878,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &218561837
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,8 +977,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &301689399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,8 +1076,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &316922408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,8 +1175,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &321244056
 GameObject:
   m_ObjectHideFlags: 0
@@ -1252,8 +1274,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &337813516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,8 +1373,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &373711840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,8 +1472,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &373938726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1543,8 +1571,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &434632642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,8 +1670,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &473129044
 GameObject:
   m_ObjectHideFlags: 0
@@ -1737,8 +1769,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &510164557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1834,8 +1868,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &520972412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1931,8 +1967,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &530541504
 GameObject:
   m_ObjectHideFlags: 0
@@ -2028,8 +2066,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &536896323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2125,8 +2165,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &569186591
 GameObject:
   m_ObjectHideFlags: 0
@@ -2222,8 +2264,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &657884721
 GameObject:
   m_ObjectHideFlags: 0
@@ -2319,8 +2363,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &658112915
 GameObject:
   m_ObjectHideFlags: 0
@@ -2416,8 +2462,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &660467351
 GameObject:
   m_ObjectHideFlags: 0
@@ -2576,8 +2624,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &764186592
 GameObject:
   m_ObjectHideFlags: 0
@@ -2673,8 +2723,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &770434196
 GameObject:
   m_ObjectHideFlags: 0
@@ -2770,8 +2822,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &788817823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,8 +2921,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &796843428
 GameObject:
   m_ObjectHideFlags: 0
@@ -2964,8 +3020,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &862230911
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,8 +3206,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &923359254
 GameObject:
   m_ObjectHideFlags: 0
@@ -3245,8 +3305,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &973587190
 GameObject:
   m_ObjectHideFlags: 0
@@ -3342,8 +3404,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1038623178
 GameObject:
   m_ObjectHideFlags: 0
@@ -3377,9 +3441,13 @@ MonoBehaviour:
   board: {fileID: 1083621084}
   houses: []
   movementSpeed: 250
+  pieceToMove: {fileID: 0}
+  alreadyMoved: 0
   qntOfMovementsLeft: 0
   multipleMovements: 0
   multipleMovementsPiece: {fileID: 0}
+  maxPlayForPlayer: []
+  countPlays: 0
 --- !u!4 &1038623180
 Transform:
   m_ObjectHideFlags: 0
@@ -3488,8 +3556,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1074094325
 GameObject:
   m_ObjectHideFlags: 0
@@ -3585,8 +3655,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1083621084 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 151974, guid: 353a0d88e09adbc45a652cee9ed67682, type: 2}
@@ -3686,8 +3758,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1139517274
 GameObject:
   m_ObjectHideFlags: 0
@@ -3783,8 +3857,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1188014039
 GameObject:
   m_ObjectHideFlags: 0
@@ -3880,8 +3956,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1228825997
 GameObject:
   m_ObjectHideFlags: 0
@@ -3977,8 +4055,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1315185998
 GameObject:
   m_ObjectHideFlags: 0
@@ -4074,8 +4154,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1344859903
 GameObject:
   m_ObjectHideFlags: 0
@@ -4171,8 +4253,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1361021313
 GameObject:
   m_ObjectHideFlags: 0
@@ -4268,8 +4352,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1368065590
 GameObject:
   m_ObjectHideFlags: 0
@@ -4365,8 +4451,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1393652648
 GameObject:
   m_ObjectHideFlags: 0
@@ -4462,8 +4550,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1397372754
 GameObject:
   m_ObjectHideFlags: 0
@@ -4559,8 +4649,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1445772496
 GameObject:
   m_ObjectHideFlags: 0
@@ -4656,8 +4748,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1474191295
 GameObject:
   m_ObjectHideFlags: 0
@@ -4753,8 +4847,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1491449198
 GameObject:
   m_ObjectHideFlags: 0
@@ -4850,8 +4946,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1501939298
 GameObject:
   m_ObjectHideFlags: 0
@@ -4947,8 +5045,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1001 &1537910787
 Prefab:
   m_ObjectHideFlags: 0
@@ -5175,8 +5275,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1723735568
 GameObject:
   m_ObjectHideFlags: 0
@@ -5272,8 +5374,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1753852849
 GameObject:
   m_ObjectHideFlags: 0
@@ -5369,8 +5473,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1775608012
 GameObject:
   m_ObjectHideFlags: 0
@@ -5529,8 +5635,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1818001237
 GameObject:
   m_ObjectHideFlags: 0
@@ -5626,8 +5734,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1833583615
 GameObject:
   m_ObjectHideFlags: 0
@@ -5723,8 +5833,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1890352498
 GameObject:
   m_ObjectHideFlags: 0
@@ -5820,8 +5932,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1900462660
 GameObject:
   m_ObjectHideFlags: 0
@@ -5917,8 +6031,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1930951504
 GameObject:
   m_ObjectHideFlags: 0
@@ -6014,8 +6130,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &1978459974
 GameObject:
   m_ObjectHideFlags: 0
@@ -6111,8 +6229,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &2007381495
 GameObject:
   m_ObjectHideFlags: 0
@@ -6208,8 +6328,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &2059902009
 GameObject:
   m_ObjectHideFlags: 0
@@ -6305,8 +6427,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &2073205763
 GameObject:
   m_ObjectHideFlags: 0
@@ -6402,8 +6526,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &2078084693
 GameObject:
   m_ObjectHideFlags: 0
@@ -6499,8 +6625,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &2087167963
 GameObject:
   m_ObjectHideFlags: 0
@@ -6596,8 +6724,10 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: b061717b9ba0dbf45b151f1c51e3805f, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
 --- !u!1 &2147121080
 GameObject:
   m_ObjectHideFlags: 0
@@ -6693,5 +6823,7 @@ MonoBehaviour:
   line: 0
   column: 0
   highlightedMaterial: {fileID: 2100000, guid: c45cba2174fe5a44b9431350b67f545b, type: 2}
+  highlightedToGoMaterial: {fileID: 0}
   normalMaterial: {fileID: 2100000, guid: 3b68e74ef9ee1844bb05c52a08e38177, type: 2}
-  isHighlighted: 0
+  isEnabledToMove: 0
+  isPainted: 0
