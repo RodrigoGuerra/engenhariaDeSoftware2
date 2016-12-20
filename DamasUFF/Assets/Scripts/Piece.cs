@@ -45,15 +45,15 @@ public class Piece : MonoBehaviour
 		switch (this.tag) {
 
 		case"WhitePieceTag":
-			if (this.line == 7) {
-				controlGame.GrantQueenPiece (this,true);
+			if (this.line == 7 && controlGame && !controlGame.multipleMovements) {
+				controlGame.GrantQueenPiece (this, true);
 			}
 				
 			break;
 
 		case "BlackPieceTag":
-			if (this.line == 0) {
-				controlGame.GrantQueenPiece (this,false);
+			if (this.line == 0 && controlGame && !controlGame.multipleMovements) {
+				controlGame.GrantQueenPiece (this, false);
 			}
 			break;
 
@@ -69,32 +69,36 @@ public class Piece : MonoBehaviour
 
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			RaycastHit hit;
-			if (Physics.Raycast (ray, out hit)) {
-				if (hit.collider.gameObject.GetComponent<Piece> () != null
-				    && hit.collider.gameObject.GetComponent<Piece> () == this) {
-					//controlGame gets the reference of last piece clicked by mouse
-					if (!controlGame.multipleMovements) {
-						if ((controlGame.currentPlayerTurn.color == Color.white && (this.CompareTag ("WhitePieceTag") || this.CompareTag ("WhiteQueenTag")))
-						    || (controlGame.currentPlayerTurn.color == Color.black && (this.CompareTag ("BlackPieceTag") || this.CompareTag ("BlackQueenTag")))) {
-							controlGame.selectedPiece = this;
+			if (controlGame.currentPlayerTurn is Person) {
+
+				if (Physics.Raycast (ray, out hit)) {
+					if (hit.collider.gameObject.GetComponent<Piece> () != null
+					    && hit.collider.gameObject.GetComponent<Piece> () == this) {
+						//controlGame gets the reference of last piece clicked by mouse
+						if (!controlGame.multipleMovements) {
+							if ((controlGame.currentPlayerTurn.color == Color.white && (this.CompareTag ("WhitePieceTag") || this.CompareTag ("WhiteQueenTag")))
+							    || (controlGame.currentPlayerTurn.color == Color.black && (this.CompareTag ("BlackPieceTag") || this.CompareTag ("BlackQueenTag")))) {
+								controlGame.selectedPiece = this;
 					
-							controlGame.TurnOffAllHouses ();
-							Verifier.VerifyPlayByPiece (this.line, this.column, controlGame.piecesArray, controlGame);
+								controlGame.TurnOffAllHouses ();
+								Verifier.VerifyPlayByPiece (this.line, this.column, controlGame.piecesArray, controlGame);
 
-							//	Debug.Log ("Piece line: "+this.line+"  Piece Column: " + this.column);
+								//	Debug.Log ("Piece line: "+this.line+"  Piece Column: " + this.column);
 
-						}
+							}
 					
 
-						//TESTING MOVEMENT
-						//	controlGame.EfectuatePlay (controlGame.selectedPiece,new House() );      
-					} else {
-						//controlGame.selectedPiece = null;
+							//TESTING MOVEMENT
+							//	controlGame.EfectuatePlay (controlGame.selectedPiece,new House() );      
+						} else {
+							//controlGame.selectedPiece = null;
 				
+						}
 					}
 				}
-			}
 
-		} 
+
+			}
+		}
 	}
 }

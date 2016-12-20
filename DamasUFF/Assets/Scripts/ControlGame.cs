@@ -6,7 +6,7 @@ using System.Linq;
 
 public class ControlGame : MonoBehaviour
 {
-	private bool testmode;
+	
 
 	//Verifier class
 
@@ -42,8 +42,8 @@ public class ControlGame : MonoBehaviour
 	public Queue<MovementAction> movementsToGo;
 	private bool isMoving;
 	private House HouseToGo;
-	private Piece pieceToMove;
-	private bool alreadyMoved;
+	public Piece pieceToMove;
+	private bool alreadyMoved = false;
 
 	//Verifier
 	public int qntOfMovementsLeft;
@@ -51,6 +51,7 @@ public class ControlGame : MonoBehaviour
 	public Piece multipleMovementsPiece;
 
 
+	private bool _AIHasPlayed;
 	public List<int[]> listOfMovements;
 	// Use this for initialization
 	void Start ()
@@ -90,89 +91,204 @@ public class ControlGame : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		//Checks if game is updating position of a piece
-		if (isMoving) {
+
+		if (currentPlayerTurn is Person) {
+			//Checks if game is updating position of a piece
+			if (isMoving) {
 			
-			float step = (movementSpeed * 0.01f) * Time.deltaTime;
+				float step = (movementSpeed * 0.01f) * Time.deltaTime;
 
-			Vector3 positionToGo = new Vector3 (HouseToGo.transform.position.x, 0.15f, HouseToGo.transform.position.z);
-			pieceToMove.transform.position = Vector3.MoveTowards (pieceToMove.transform.position, positionToGo, step);
+				Vector3 positionToGo = new Vector3 (HouseToGo.transform.position.x, 0.15f, HouseToGo.transform.position.z);
+				pieceToMove.transform.position = Vector3.MoveTowards (pieceToMove.transform.position, positionToGo, step);
 
-			//Piece arrived at desired position
-			if (pieceToMove.transform.position == positionToGo) {
+				//Piece arrived at desired position
+				if (pieceToMove.transform.position == positionToGo) {
 
-				isMoving = false;		
-				//Debug.Log ("ismoving =false, chegou na posicao");
-				//	piecesArray [pieceToMove.line, pieceToMove.column] = 0;
+					isMoving = false;		
+					//Debug.Log ("ismoving =false, chegou na posicao");
+					//	piecesArray [pieceToMove.line, pieceToMove.column] = 0;
 
-				//	pieceToMove.column = HouseToGo.column;
-				//	pieceToMove.line = HouseToGo.line;
+					//	pieceToMove.column = HouseToGo.column;
+					//	pieceToMove.line = HouseToGo.line;
 
-				pieceToMove.SetPosition (HouseToGo.line, HouseToGo.column);
+					pieceToMove.SetPosition (HouseToGo.line, HouseToGo.column);
 
-				//Update Array to AI and Verifier
-				GeneratePiecesArray ();
+					//Update Array to AI and Verifier
+					GeneratePiecesArray ();
 
-				//Check if there is no movement left on movement queue
-				if (movementsToGo.Count == 0) {
+					//Check if there is no movement left on movement queue
+					if (movementsToGo.Count == 0) {
 
 
-					int p = PositionHouseOnList (pieceToMove.line, pieceToMove.column);
-					if (qntOfMovementsLeft == 1) {
+						int p = PositionHouseOnList (pieceToMove.line, pieceToMove.column);
+						if (qntOfMovementsLeft == 1) {
 						
-						for (int i = 0; i < listOfMovements.Count (); i++) {
-							int[] v = listOfMovements [i];
-							housesArray [v [0], v [1]].isEnabledToMove = false;
-						}
-
-						for (int i = p + 1; i < listOfMovements.Count (); i++) {
-							int[] v = listOfMovements [i];
-							housesArray [v [0], v [1]].isEnabledToMove = true;
-						}
-					} else {
-						if (qntOfMovementsLeft > 1) {
-
 							for (int i = 0; i < listOfMovements.Count (); i++) {
 								int[] v = listOfMovements [i];
-								housesArray [v [0], v [1]].isEnabledToMove = false;
+								housesArray [v [0], v [1]].SetIsEnabledToMove (false);
 							}
 
-							int[] vetor = listOfMovements [p + 1];
-							housesArray [vetor [0], vetor [1]].isEnabledToMove = true;
+							for (int i = p + 1; i < listOfMovements.Count (); i++) {
+								int[] v = listOfMovements [i];
+								housesArray [v [0], v [1]].SetIsEnabledToMove (true);
+							}
+						} else {
+							if (qntOfMovementsLeft > 1) {
+
+								for (int i = 0; i < listOfMovements.Count (); i++) {
+									int[] v = listOfMovements [i];
+									housesArray [v [0], v [1]].SetIsEnabledToMove (false);
+								}
+
+								int[] vetor = listOfMovements [p + 1];
+								housesArray [vetor [0], vetor [1]].SetIsEnabledToMove (true);
+							}
+						}								
+
+						//if player has more than 1 movement left, decrease 1 unit
+						//	if (multipleMovements)
+						//		qntOfMovementsLeft--;
+
+						CheckMultipleMovements ();
+
+
+						//check if play has multiple captures (if does, cant change turn until that amount of captures has been done)
+
+
+					
+						//if there is no movements left to do, change turn
+						ChangePlayersTurn ();
+
+						TurnOffAllHouses ();
+					} 
+
+					PrintPiecesArray ();
+
+				}
+			 
+		
+			} else {//if not, then check if movements queue has any movements to do
+
+
+				if (movementsToGo != null && movementsToGo.Count != 0) {
+
+					MovementAction m = movementsToGo.Dequeue ();
+					EfectuatePlay (m.piece, m.houseToGo);
+				}  
+			}
+
+		} else {
+
+			if (!AIHasPlayed ()) {
+				_AIHasPlayed = true;
+				bool white = currentPlayerTurn.color == Color.white ? true : false;
+
+				MinMax mm = new MinMax (piecesArray, white, 7);
+
+				Play p = mm.Search ();
+				int[] pos = p.getPos ();
+
+				//pieceToMove = piecesArray [pos [0], pos [1]];
+				if (pos != null) {
+			
+					pieceToMove = GetPieceAtPosition (pos [0], pos [1]);
+
+					listOfMovements = p.getPlay ();
+
+
+					List<MovementAction> ma = new List<MovementAction> ();
+					while (listOfMovements.Count () > 0) {
+
+						MovementAction m = new MovementAction ();
+
+						int[] hToGoVector = listOfMovements.ElementAt (0);
+						listOfMovements.RemoveAt (0);
+
+						m.houseToGo = housesArray [hToGoVector [0], hToGoVector [1]];
+						m.piece = pieceToMove;
+						ma.Add (m);
+					}
+					if (ma.Count () > 1) {
+						Debug.Log ("break");
+					}
+					EfectuateListOfPlays (ma);
+
+				} else {
+					Debug.Log ("Acabaram jogadas");
+				}
+
+			} else {
+
+				if (isMoving) {
+
+					float step = (movementSpeed * 0.01f) * Time.deltaTime;
+
+					Vector3 positionToGo = new Vector3 (HouseToGo.transform.position.x, 0.15f, HouseToGo.transform.position.z);
+					pieceToMove.transform.position = Vector3.MoveTowards (pieceToMove.transform.position, positionToGo, step);
+
+					//Piece arrived at desired position
+					if (pieceToMove.transform.position == positionToGo) {
+
+						isMoving = false;		
+						//Debug.Log ("ismoving =false, chegou na posicao");
+						//	piecesArray [pieceToMove.line, pieceToMove.column] = 0;
+
+						//	pieceToMove.column = HouseToGo.column;
+						//	pieceToMove.line = HouseToGo.line;
+
+						pieceToMove.SetPosition (HouseToGo.line, HouseToGo.column);
+
+						//Update Array to AI and Verifier
+						GeneratePiecesArray ();
+
+						//Check if there is no movement left on movement queue
+						if (movementsToGo.Count == 0) {
+							
+
+
+							//check if play has multiple captures (if does, cant change turn until that amount of captures has been done)
+							CheckMultipleMovements ();
+
+
+							//if there is no movements left to do, change turn
+							ChangePlayersTurn ();
 						}
-					}								
+					}
+				} else if (movementsToGo != null && movementsToGo.Count != 0) {
 
-					//if player has more than 1 movement left, decrease 1 unit
-					//	if (multipleMovements)
-					//		qntOfMovementsLeft--;
-
-					CheckMultipleMovements ();
-
-
-					//check if play has multiple captures (if does, cant change turn until that amount of captures has been done)
-
-
-					Debug.Log ("Change turn.");
-
-					//if there is no movements left to do, change turn
-					ChangePlayersTurn ();
-
-					TurnOffAllHouses ();
+					MovementAction m = movementsToGo.Dequeue ();
+					EfectuatePlay (m.piece, m.houseToGo);
 				} 
 
-				PrintPiecesArray ();
-
 			}
-		
-		} else {//if not, then check if movements queue has any movements to do
-
-
-			if (movementsToGo != null && movementsToGo.Count != 0) {
-
-				MovementAction m = movementsToGo.Dequeue ();
-				EfectuatePlay (m.piece, m.houseToGo);
-			}  
 		}
+	}
+
+	private Piece GetPieceAtPosition (int line, int column)
+	{
+
+		foreach (Piece p in teamWhitePieces) {
+
+			if (p.line == line && p.column == column)
+				return p;
+
+		}
+
+		foreach (Piece p in teamBlackPieces) {
+
+			if (p.line == line && p.column == column)
+				return p;
+			
+
+		}
+
+		return null;
+	}
+
+	private bool AIHasPlayed ()
+	{
+
+		return _AIHasPlayed;
 	}
 
 	private int PositionHouseOnList (int line, int column)
@@ -242,14 +358,14 @@ public class ControlGame : MonoBehaviour
 
 		case GameTypeEnum.AIvsAI:
 			player1 = new AI ();
-			player2 = new Person ();
+			player2 = new AI ();
 			player1.id = 1;
 			player2.id = 2;
 			break;
 
 		case GameTypeEnum.PlayerVsAI:
-			player1 = new AI ();
-			player2 = new Person ();
+			player1 = new Person ();
+			player2 = new AI ();
 			player1.id = 1;
 			player2.id = 2;
 			break;
@@ -288,12 +404,16 @@ public class ControlGame : MonoBehaviour
 			EndGame ();
 
 		if (!multipleMovements) {
+			Debug.Log ("Change turn.");
+
+
 			if (currentPlayerTurn.id == player1.id)
 				currentPlayerTurn = player2;
 			else
 				currentPlayerTurn = player1;
 		}
 
+		_AIHasPlayed = false;
 		alreadyMoved = false;
 
 		/*	if (currentPlayerTurn.color == Color.black)
@@ -359,7 +479,7 @@ public class ControlGame : MonoBehaviour
 	{
 		if (!isMoving) {		
 
-			if (((houseToGo.line + piece.line) % 2) == 0 && ((houseToGo.column + piece.column) % 2) == 0) {
+			/*		if (((houseToGo.line + piece.line) % 2) == 0 && ((houseToGo.column + piece.column) % 2) == 0) {
 				int l = (houseToGo.line + piece.line) / 2;
 				int c = (houseToGo.column + piece.column) / 2;
 				//	piecesArray [l, c] = 0;
@@ -368,6 +488,8 @@ public class ControlGame : MonoBehaviour
 				SearchToDestroy (teamBlackPieces, l, c);
 				SearchToDestroy (teamWhitePieces, l, c);
 			}
+*/
+			CheckIfDestroy (piece.line, piece.column, houseToGo.line, houseToGo.column);
 
 			HouseToGo = houseToGo;
 			pieceToMove = piece;
@@ -378,6 +500,87 @@ public class ControlGame : MonoBehaviour
 		}
 
 
+	}
+
+	private void CheckIfDestroy (int linhaI, int colunaI, int linhaF, int colunaF)
+	{
+		
+		//posicaoInicial como (xi,yi)
+		//posicaoFinal como (xf,yf)
+
+		//horizontal = null;
+		//vertical = null;
+		int qtdCasasAndadas = 0;
+		bool direita;
+		bool cima;
+		qtdCasasAndadas = Mathf.Abs (linhaI - linhaF);
+
+		if ((linhaI - linhaF) > 0) {
+			direita = true;
+		} else {
+			direita = false;
+		}
+
+		if ((colunaI - colunaF) > 0) {
+			cima = false;
+		} else {
+			cima = true;
+		}
+ 
+		if (direita && cima) { 
+			for (int i = 0; i < qtdCasasAndadas; i++) {
+				if (piecesArray [linhaF + i, colunaF - i] != 0) {
+					SearchToDestroy (teamBlackPieces, linhaF + i, colunaF - i);
+					SearchToDestroy (teamWhitePieces, linhaF + i, colunaF - i);
+				}
+			}
+
+			//	i = 1 ate qtdCasasAndadas-1 faça
+			//		se temPeça(xf+i,yf-i)
+			//		DestroiPeça 
+		}
+		if (direita && !cima) { 
+
+			for (int i = 0; i < qtdCasasAndadas; i++) {
+				if (piecesArray [linhaF + i, colunaF + i] != 0) {
+					SearchToDestroy (teamBlackPieces, linhaF + i, colunaF + i);
+					SearchToDestroy (teamWhitePieces, linhaF + i, colunaF + i);
+				}
+			}
+
+			//	para i = 1 ate qtdCasasAndadas-1 faça
+			//		se temPeça(xf+i,yf+i)
+			//		DestroiPeça
+		}
+		if (!direita && cima) {
+
+			for (int i = 0; i < qtdCasasAndadas; i++) {
+				if (piecesArray [linhaF - i, colunaF - i] != 0) {
+					SearchToDestroy (teamBlackPieces, linhaF - i, colunaF - i);
+					SearchToDestroy (teamWhitePieces, linhaF - i, colunaF - i);
+				}
+			}
+
+		}
+
+		//então 
+		///	para i = 1 ate qtdCasasAndadas-1 faça
+		//	se temPeça(xf-i,yf-i)
+		//		DestroiPeça
+
+		if (!direita && !cima) { 
+			
+			for (int i = 0; i < qtdCasasAndadas; i++) {
+				if (piecesArray [linhaF - i, colunaF + i] != 0) {
+					SearchToDestroy (teamBlackPieces, linhaF - i, colunaF + i);
+					SearchToDestroy (teamWhitePieces, linhaF - i, colunaF + i);
+				}
+			}
+		}
+		//	para i = 1 ate qtdCasasAndadas-1 faça
+		//	se temPeça(xf-i,yf+i)
+		//			DestroiPeça
+		
 	}
 
 	private void SearchToDestroy (List<Piece> team, int line, int column)
@@ -395,6 +598,8 @@ public class ControlGame : MonoBehaviour
 
 		if (pieceToRemove != null) {
 			team.Remove (pieceToRemove);
+			piecesArray [pieceToRemove.line, pieceToRemove.column] = 0;
+				
 			Destroy (pieceToRemove.gameObject);
 			if (qntOfMovementsLeft > 0)
 				qntOfMovementsLeft--;
@@ -466,7 +671,7 @@ public class ControlGame : MonoBehaviour
 				k = alterna ? 1 : 0;
 				while (k < 8) {
 				
-					GameObject p = (GameObject)Instantiate (Resources.Load ("Prefabs/WhiteKingChecker_T"));
+					GameObject p = (GameObject)Instantiate (Resources.Load ("Prefabs/WhiteMenChecker_T"));
 					p.transform.SetParent (teamWhite.transform);
 					p.transform.position = new Vector3 ((float)housesArray [i, k].transform.position.x, 0.15f, (float)housesArray [i, k].transform.position.z);
 					Piece piece = p.GetComponent<Piece> ();
@@ -504,41 +709,42 @@ public class ControlGame : MonoBehaviour
 
 	public void GrantQueenPiece (Piece p, bool white)
 	{
-		if (white) {
-			GameObject whites = GameObject.Find ("Whites");
+		if (!isMoving && qntOfMovementsLeft <= 0 && !multipleMovements) {
+			if (white) {
+				GameObject whites = GameObject.Find ("Whites");
 
-			GameObject q = (GameObject)Instantiate (Resources.Load ("Prefabs/WhiteKingChecker_T"));
-			q.transform.SetParent (whites.transform);
-			q.transform.position = new Vector3 (p.gameObject.transform.position.x, p.gameObject.transform.position.y, p.gameObject.transform.position.z);
-			Piece piece = q.GetComponent<Piece> ();
-			piece.column = p.column;
-			piece.line = p.line;
-			piece.isQueen = true;
-			SearchToDestroy (teamWhitePieces, p.line, p.column);
+				GameObject q = (GameObject)Instantiate (Resources.Load ("Prefabs/WhiteKingChecker_T"));
+				q.transform.SetParent (whites.transform);
+				q.transform.position = new Vector3 (p.gameObject.transform.position.x, p.gameObject.transform.position.y, p.gameObject.transform.position.z);
+				Piece piece = q.GetComponent<Piece> ();
+				piece.column = p.column;
+				piece.line = p.line;
+				piece.isQueen = true;
+				SearchToDestroy (teamWhitePieces, p.line, p.column);
 
-			teamWhitePieces.Add (piece);
+				teamWhitePieces.Add (piece);
 
 
 
-		} else {
+			} else {
 
-			GameObject blacks = GameObject.Find ("Blacks");
+				GameObject blacks = GameObject.Find ("Blacks");
 
-			GameObject q = (GameObject)Instantiate (Resources.Load ("Prefabs/BlackKingChecker_T"));
-			q.transform.SetParent (blacks.transform);
-			q.transform.position = new Vector3 (p.gameObject.transform.position.x, p.gameObject.transform.position.y, p.gameObject.transform.position.z);
-			Piece piece = q.GetComponent<Piece> ();
-			piece.column = p.column;
-			piece.line = p.line;
-			piece.isQueen = true;
-			SearchToDestroy (teamBlackPieces, p.line, p.column);
+				GameObject q = (GameObject)Instantiate (Resources.Load ("Prefabs/BlackKingChecker_T"));
+				q.transform.SetParent (blacks.transform);
+				q.transform.position = new Vector3 (p.gameObject.transform.position.x, p.gameObject.transform.position.y, p.gameObject.transform.position.z);
+				Piece piece = q.GetComponent<Piece> ();
+				piece.column = p.column;
+				piece.line = p.line;
+				piece.isQueen = true;
+				SearchToDestroy (teamBlackPieces, p.line, p.column);
 
-			teamBlackPieces.Add (piece);
+				teamBlackPieces.Add (piece);
 
+			}
+
+			GeneratePiecesArray ();
 		}
-
-		GeneratePiecesArray ();
-
 	}
 
 }

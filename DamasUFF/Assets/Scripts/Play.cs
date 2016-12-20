@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Play : MonoBehaviour {
+public class Play {
 	[ReadOnly]private int[,] TAB;            
 	private int[,] nextTab; 
 	//Type é verdadeiro para 1 ou 3 e falso para 2 ou 4
@@ -28,7 +28,7 @@ public class Play : MonoBehaviour {
 		this.TYPE = TYPE;
 
 		int number = 0;
-		for (int i = 0; i < TAB.Length; i++) {
+		for (int i = 0; i < TAB.GetLength(0); i++) {
 			for (int j = 0; j < TAB.GetLength(1); j++) {
 				//Se a peça for do tipo atual
 				if (((TAB[i,j] == (int)PieceTypeEnum.White) && TYPE) || ((TAB[i,j] == (int)PieceTypeEnum.Black) && !TYPE)) {

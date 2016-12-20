@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MinMax : MonoBehaviour {
+public class MinMax {
 	[ReadOnly]private int LEVEL = 0;
 	[ReadOnly]private int MAX_LEVEL;
 
@@ -10,6 +10,8 @@ public class MinMax : MonoBehaviour {
 
 	//Type é verdadeiro para 1 ou 3 e falso para 2 ou 4
 	[ReadOnly]private bool TYPE;
+
+
 
 	// Use this for initialization
 	void Start () {
@@ -24,18 +26,53 @@ public class MinMax : MonoBehaviour {
 
 	public Play Search() {
 		Play play = new Play(TAB, TYPE);
+
+
+
 		return MaxValue(play, LEVEL, int.MinValue, int.MaxValue);
 	}
 
 	private Play MaxValue(Play state, int level, int alpha, int beta) {
+		int MAX_COUNT_GLOBAL;
 
 		//Altura máxima da árvore        
 		if (level < MAX_LEVEL) {
 
-			Play v = new Play(int.MinValue, TYPE);
 
+			int max = 0;
+			for (int line = 0; line < state.getTAB().GetLength(0); line++) {
+				for (int column = 0; column < state.getTAB().GetLength(1); column++) {
+
+					//Se a peça for do tipo atual
+					if ((((state.getTAB()[line,column] == (int)PieceTypeEnum.White) && TYPE) || ((state.getTAB()[line,column] == (int)PieceTypeEnum.Black) && !TYPE))
+						|| (((state.getTAB()[line,column] == (int)PieceTypeEnum.KingWhite) && TYPE) || ((state.getTAB()[line,column] == (int)PieceTypeEnum.KingBlack) && !TYPE))) {
+
+						//Gera a lista de jogadas para tal posição
+						int pieceType = state.getTAB()[line,column];
+						List<List<int[]>> list = Verifier.VerifyPlayByPiece(line, column, state.getTAB(),null);
+						state.getTAB()[line,column] = pieceType;
+
+						//Posição atual
+						int[] pos = {line, column};
+
+						//Qtd máxima de peças que podem ser comidas
+						int maxCount = Verifier.MaxCount(list, pos);   
+						if(maxCount > max){
+							max = maxCount;
+						}
+					}
+				}
+			}
+
+			MAX_COUNT_GLOBAL = max;
+
+
+
+			Play v = new Play(int.MinValue, TYPE);
+			v.setPos(state.getPos());
+			v.setPlay (state.getPlay ());
 			//Percorre o tabuleiro inteiro
-			for (int line = 0; line < state.getTAB().Length; line++) {
+			for (int line = 0; line < state.getTAB().GetLength(0); line++) {
 				for (int column = 0; column < state.getTAB().GetLength(1); column++) {
 
 					//Se a peça for do tipo atual
@@ -56,7 +93,7 @@ public class MinMax : MonoBehaviour {
 						for (int i = 0; i < list.Count; i++) {
 
 							//Se a jogada for a máxima
-							if (Verifier.Count(list[i], pos) == maxCount) {
+							if (Verifier.Count(list[i], pos) == MAX_COUNT_GLOBAL) {
 
 								//Atualiza o tabuleiro
 								int[,] child = Verifier.UpdateTab(list[i], state.getTAB(), pos, state.getTAB()[line,column]);
@@ -93,14 +130,49 @@ public class MinMax : MonoBehaviour {
 	}
 
 	private Play min_value(Play state, int level, int alpha, int beta) {
-
+		int MAX_COUNT_GLOBAL;
 		//Altura máxima da árvore        
 		if (level < MAX_LEVEL) {
 
+
+
+
+			int max = 0;
+			for (int line = 0; line < state.getTAB().GetLength(0); line++) {
+				for (int column = 0; column < state.getTAB().GetLength(1); column++) {
+
+					//Se a peça for do tipo atual
+					if ((((state.getTAB()[line,column] == (int)PieceTypeEnum.White) && !TYPE) || ((state.getTAB()[line,column] == (int)PieceTypeEnum.Black) && TYPE))
+						|| (((state.getTAB()[line,column] == (int)PieceTypeEnum.KingWhite) && !TYPE) || ((state.getTAB()[line,column] == (int)PieceTypeEnum.KingBlack) && TYPE))) {
+
+						//Gera a lista de jogadas para tal posição
+						int pieceType = state.getTAB()[line,column];
+						List<List<int[]>> list = Verifier.VerifyPlayByPiece(line, column, state.getTAB(),null);
+						state.getTAB()[line,column] = pieceType;
+
+						//Posição atual
+						int[] pos = {line, column};
+
+						//Qtd máxima de peças que podem ser comidas
+						int maxCount = Verifier.MaxCount(list, pos);   
+						if(maxCount > max){
+							max = maxCount;
+						}
+					}
+				}
+			}
+
+			MAX_COUNT_GLOBAL = max;
+
+
+
+
 			Play v = new Play(int.MaxValue, !TYPE);
+			v.setPos(state.getPos());
+			v.setPlay (state.getPlay ());
 
 			//Percorre o tabuleiro inteiro
-			for (int line = 0; line < state.getTAB().Length; line++) {
+			for (int line = 0; line < state.getTAB().GetLength(0); line++) {
 				for (int column = 0; column < state.getTAB().GetLength(1); column++) {
 
 					//Se a peça for do tipo atual
@@ -121,7 +193,7 @@ public class MinMax : MonoBehaviour {
 						for (int i = 0; i < list.Count; i++) {
 
 							//Se a jogada for a máxima
-							if (Verifier.Count(list[i], pos) == maxCount) {
+							if (Verifier.Count(list[i], pos) == MAX_COUNT_GLOBAL) {
 
 								//Atualiza o tabuleiro
 								int[,] child = Verifier.UpdateTab(list[i], state.getTAB(), pos, state.getTAB()[line,column]);

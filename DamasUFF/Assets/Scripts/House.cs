@@ -12,11 +12,13 @@ public class House : MonoBehaviour
 
 	public Material highlightedMaterial;
 
+	public Material highlightedToGoMaterial;
+
 	public Material normalMaterial;
 
 	public bool isEnabledToMove = false;
 
-	public bool isPainted=false;
+	public bool isPainted = false;
 	// Use this for initialization
 	void Start ()
 	{
@@ -28,23 +30,34 @@ public class House : MonoBehaviour
 	{
 		
 		MouseClick ();
-	
+					
+	}
+
+	public void SetIsEnabledToMove (bool value)
+	{
+		isEnabledToMove = value;
+		if (!value) {
+			MeshRenderer rend = GetComponent<MeshRenderer> ();        
+			rend.material = highlightedToGoMaterial;
+		}
 	}
 
 	public void TurnOnLEDHouse (bool firstHouse)
 	{
-		this.isEnabledToMove = firstHouse;
-
+		
 
 		MeshRenderer rend = GetComponent<MeshRenderer> ();        
 		rend.material = highlightedMaterial;
+		SetIsEnabledToMove (firstHouse);
+	
+
 		isPainted = true;
 		//set LED color
 	}
 
 	public void TurnOffLEDHouse ()
 	{
-		this.isEnabledToMove = false;
+		SetIsEnabledToMove (false);
 		MeshRenderer rend = GetComponent<MeshRenderer> ();        
 		rend.material = normalMaterial;
 		isPainted = false;
@@ -67,14 +80,14 @@ public class House : MonoBehaviour
 			if (Physics.Raycast (ray, out hit)) {
 				
 				if (hit.collider.gameObject.GetComponent<House> () != null
-				   && hit.collider.gameObject.GetComponent<House> () == this) {
+				    && hit.collider.gameObject.GetComponent<House> () == this) {
 					//controlGame gets the reference of last piece clicked by mouse
 					if (this.isEnabledToMove) {
 						MovementAction m = new MovementAction ();
 						m.houseToGo = this;
 						m.piece = controlGame.selectedPiece;
 
-					//	Debug.Log (m.piece);
+						//	Debug.Log (m.piece);
 
 						List<MovementAction> list = new List<MovementAction> ();
 						list.Add (m);

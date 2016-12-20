@@ -326,7 +326,13 @@ public class Verifier : MonoBehaviour
 			if (resp [0, i] == 2) {
 				resp [0, i] = (int)PieceTypeEnum.KingBlack;
 			}
-		}							
+		}	
+
+		if (plays.Count > 0) {
+			l = plays[plays.Count - 1][0];
+			c = plays[plays.Count - 1][1];            
+			resp[l,c] = type;
+		}
 
 		return resp;
 	}
