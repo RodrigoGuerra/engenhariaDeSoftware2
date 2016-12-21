@@ -501,8 +501,8 @@ public class ControlGame : MonoBehaviour
 
 				if (drawScenario) {
 					countPlays++;
-
-					SetText (contador, "Moves left: " + Math.Abs (countPlays - 5).ToString ());
+					int m = Math.Abs (countPlays - 5);
+					SetText (contador, "Moves left: " + m);
 				}
 
 				foreach (Piece pp in maxPlayForPlayer) {
