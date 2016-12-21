@@ -23,7 +23,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(0, 1, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(0, 1, m, null);
 
 		Assert.That(listOfPlays.Count == 0);
 	}
@@ -44,7 +44,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(0, 0, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(0, 0, m, null);
 
 		Assert.That(listOfPlays.Count == 1);
 	}
@@ -62,7 +62,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(4, 0, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(4, 0, m, null);
 
 		Assert.That(listOfPlays.Count == 2);
 	}
@@ -80,7 +80,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(4, 0, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(4, 0, m, null);
 
 		Assert.That(listOfPlays.Count == 1);
 	}
@@ -98,7 +98,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(4, 2, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(4, 2, m, null);
 
 		Assert.That(listOfPlays.Count == 2);
 	}
@@ -121,7 +121,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(0, 0, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(0, 0, m, null);
 
 		Assert.That(listOfPlays.Count == 7);
 	}
@@ -139,7 +139,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(0, 0, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(0, 0, m, null);
 
 		Assert.That(listOfPlays.Count == 2);
 	}
@@ -157,7 +157,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(2, 0, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(2, 0, m, null);
 
 		Assert.That(listOfPlays.Count == 1);
 	}
@@ -175,7 +175,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(0, 2, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(0, 2, m, null);
 
 		Assert.That(listOfPlays.Count == 1);
 	}
@@ -199,7 +199,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(5, 5, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(5, 5, m, null);
 
 		Assert.That(listOfPlays.Count == 2);
 	}
@@ -217,7 +217,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(3, 3, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(3, 3, m, null);
 
 		Assert.That(listOfPlays.Count == 3);
 	}
@@ -235,7 +235,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(1, 7, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(1, 7, m, null);
 
 		Assert.That(listOfPlays.Count == 1);
 	}
@@ -253,7 +253,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(1, 5, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(1, 5, m, null);
 
 		Assert.That(listOfPlays.Count == 2);
 	}
@@ -276,7 +276,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(0, 0, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(0, 0, m, null);
 
 		Assert.That(listOfPlays.Count == 7);
 	}
@@ -294,7 +294,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(0, 0, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(0, 0, m, null);
 
 		Assert.That(listOfPlays.Count == 2);
 	}
@@ -312,7 +312,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(2, 0, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(2, 0, m, null);
 
 		Assert.That(listOfPlays.Count == 1);
 	}
@@ -330,7 +330,7 @@ public class UnitCaseTests {
 
 		List<List<int[]>> listOfPlays;
 
-		listOfPlays = Verifier.VerifyPlayByPiece(0, 2, m, null);
+		listOfPlays = Verifier.VerifyPlayByPieceTest(0, 2, m, null);
 
 		Assert.That(listOfPlays.Count == 1);
 	}

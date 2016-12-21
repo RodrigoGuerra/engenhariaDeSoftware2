@@ -111,10 +111,51 @@ public class Verifier : MonoBehaviour
 			}
 
 			m [i, j] = temp;
+		} else {
+			int[] vet = new int[2];
+			vet [0] = i;
+			vet [1] = j;
+
+			int maxCount = MaxCount (plays, vet); 
+			if (maxCount > 1) {
+				
+					
+				GameObject.Find ("GameController").GetComponent<ControlGame> ().multipleMovements = true;
+					
+			}
 		}
 
 		return plays;
 	}
+
+
+	public static List<List<int[]>> VerifyPlayByPieceTest (int i, int j, int[,] m, ControlGame cg)
+	{
+		int temp = m [i, j];
+
+		List<List<int[]>> plays = new List<List<int[]>> ();
+
+		switch (m [i, j]) {
+		case (int)PieceTypeEnum.White:
+			plays = Verify (i, j, 2, m, -1, plays, false, (int)PieceTypeEnum.White);
+			break;
+		case (int)PieceTypeEnum.Black:
+			plays = Verify (i, j, 2, m, 1, plays, false, (int)PieceTypeEnum.Black);
+			break;
+		case (int)PieceTypeEnum.KingWhite:
+			plays = Verify (i, j, MAX, m, -1, plays, true, (int)PieceTypeEnum.KingWhite);
+			break;
+		case (int)PieceTypeEnum.KingBlack:			
+			plays = Verify (i, j, MAX, m, 1, plays, true, (int)PieceTypeEnum.KingBlack);
+			break;
+		}
+
+
+
+
+		return plays;
+	}
+
 
 	private static List<List<int[]>> Verify (int i, int j, int max, int[,] m, int d, List<List<int[]>> plays, bool isKing, int color)
 	{

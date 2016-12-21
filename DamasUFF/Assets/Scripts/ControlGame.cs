@@ -2,13 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using UnityEngine.UI;
+using System;
 
 public class ControlGame : MonoBehaviour
 {
-	
+	private bool gameStillValid = true;
 
-	//Verifier class
+	//UI
+	public Text info;
+	public Text contador;
+	public Text turn;
+	public Text piecesInfo;
+
+	private int difficultyLevel = 0;
 
 
 	//Both Players(AI AND/OR PERSON)
@@ -61,7 +68,7 @@ public class ControlGame : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		
+		MenuScript menu = GameObject.Find ("Parameters").GetComponent<MenuScript> ();
 
 		houses = new List<House> ();
 		houses = board.GetComponentsInChildren<House> ().ToList ();
@@ -90,7 +97,7 @@ public class ControlGame : MonoBehaviour
 			}
 		}
 			
-		StartGame (GameTypeEnum.PlayerVsPlayer, DifficultyEnum.Normal);
+		StartGame (menu.gameType, menu.difficulty);
 	}
 	
 	// Update is called once per frame
@@ -186,10 +193,12 @@ public class ControlGame : MonoBehaviour
 		} else {
 
 			if (!AIHasPlayed ()) {
+		
 				_AIHasPlayed = true;
+				
 				bool white = currentPlayerTurn.color == Color.white ? true : false;
 
-				MinMax mm = new MinMax (piecesArray, white, 7);
+				MinMax mm = new MinMax (piecesArray, white, difficultyLevel);
 
 				Play p = mm.Search ();
 				int[] pos = p.getPos ();
@@ -221,6 +230,7 @@ public class ControlGame : MonoBehaviour
 
 				} else {
 					Debug.Log ("Acabaram jogadas");
+					VerifyStatus ();
 				}
 
 			} else {
@@ -254,7 +264,7 @@ public class ControlGame : MonoBehaviour
 
 							//check if play has multiple captures (if does, cant change turn until that amount of captures has been done)
 							CheckMultipleMovements ();
-
+							pieceToMove.CheckQueen ();
 
 							//if there is no movements left to do, change turn
 							ChangePlayersTurn ();
@@ -387,78 +397,134 @@ public class ControlGame : MonoBehaviour
 			Debug.Log ("Nenhum gametype selecionado.");
 			break;
 		}
+
+		switch (difficulty) {
+
+		case DifficultyEnum.Easy:
+			difficultyLevel = 1;
+			break;
+
+		case DifficultyEnum.Normal:
+			difficultyLevel = 4;
+			break;
+
+		case DifficultyEnum.Hard:
+			difficultyLevel = 7;
+			break;
+
+		default:
+			Debug.Log ("Nenhum gametype selecionado.");
+			break;
+		}
 	
 		ChooseTeamsRandomly ();
 
 		Player first = player1.color == Color.white ? player1 : player2;
 
+		SetText (contador, "");
 		SetFirstPlayerTurn (first);
+		SetPiecesInfo ();
 	}
 
 	private void SetFirstPlayerTurn (Player first)
 	{
 		
 		currentPlayerTurn = first;
+		SetText (turn, "Turn: Whites");
+
 		GetMaxPlay (currentPlayerTurn.color);
 	}
 
 
 	public void ChangePlayersTurn ()
 	{
-		Status gameStatus = VerifyStatus ();
+		if (gameStillValid) {
+			Status gameStatus = VerifyStatus ();
 
-		switch (gameStatus) {
-		case Status.Continue:
-			break;
-		case Status.Draw:
-			Draw ();
-			break;
-		case Status.WinBlack:
-			Win (Color.black);
-			break;
-		case Status.WinWhite:
-			Win (Color.white);
-			break;
+			switch (gameStatus) {
+			case Status.Continue:
+				break;
+			case Status.Draw:
+				Draw ();
+				return;
 
+			case Status.WinBlack:
+				Win (Color.black);
+				return;
+			
+			case Status.WinWhite:
+				Win (Color.white);
+				return;
+			
 
-		}
+			}
 	
 
-		if (!multipleMovements) {
-			Debug.Log ("Change turn.");
+			if (!multipleMovements) {
+				Debug.Log ("Change turn.");
 
 
-			if (currentPlayerTurn.id == player1.id)
-				currentPlayerTurn = player2;
-			else
-				currentPlayerTurn = player1;
+				if (currentPlayerTurn.id == player1.id) {
+					currentPlayerTurn = player2;
+					if (player1 is AI && player2 is AI) {
+						SetText (info, "AI vs AI mode");
 
-			_AIHasPlayed = false;
-			alreadyMoved = false;
+					} else {
+						if (player2 is Person) {
+							SetText (info, "Player 2, make a move.");
+						} else {
+							SetText (info, "AI is thinking...");
+						}
+					}
 
-			if (drawScenario) {
-				countPlays++;
-			}
+				} else {
+					currentPlayerTurn = player1;
+					if (player1 is AI && player2 is AI) {
+						SetText (info, "AI vs AI mode");
 
-			foreach(Piece pp in maxPlayForPlayer){
-				pp.ShutHighlightedPiece ();
-			}
-			maxPlayForPlayer.Clear ();
+					} else {
+						if (player2 is AI) {
+							SetText (info, "Your turn.");
+						} else {
+							SetText (info, "Player 1, make a move.");
+						}
+					}
+				}
 
-			if (currentPlayerTurn is Person) {
+				if (currentPlayerTurn.color == Color.black)
+					SetText (turn, "Turn: Blacks");
+				else
+					SetText (turn, "Turn: Whites");
+			
+				_AIHasPlayed = false;
+				alreadyMoved = false;
+
+				if (drawScenario) {
+					countPlays++;
+
+					SetText (contador, "Moves left: " + Math.Abs (countPlays - 5).ToString ());
+				}
+
+				foreach (Piece pp in maxPlayForPlayer) {
+					pp.ShutHighlightedPiece ();
+				}
+				maxPlayForPlayer.Clear ();
+
+				if (currentPlayerTurn is Person) {
 				
-				//max =  GetMaxPlay ();
-				GetMaxPlay (currentPlayerTurn.color);
+					//max =  GetMaxPlay ();
+					GetMaxPlay (currentPlayerTurn.color);
+				}
 			}
-		}
 
 
 
-		/*	if (currentPlayerTurn.color == Color.black)
+			/*	if (currentPlayerTurn.color == Color.black)
 			VerifyForEachPiece (teamBlackPieces);
 		else
 			VerifyForEachPiece(teamWhitePieces);
 */
+		}
 	}
 
 	private void GetMaxPlay (Color c)
@@ -533,30 +599,43 @@ public class ControlGame : MonoBehaviour
 
 	private void Draw ()
 	{
-		Debug.Log ("draw");
+		gameStillValid = false;
+		SetText (info, "It was a draw!");
 		//display draw hud
 	}
 
 	private void Win (Color winColor)
 	{
 		//Stop and show scores
+		gameStillValid = false;
 
 		if (winColor == Color.white) {
-			Debug.Log ("brancas vencedoras");
+			SetWinTextWhite ();
 		} else {
-			Debug.Log ("pretas vencedoras");
+			SetWinTextBlack ();
 		}
 	}
 
 	private void ChooseTeamsRandomly ()
 	{
-		int r = Random.Range (0, 1);
+		float r = UnityEngine.Random.Range (0, 1f);
 		if (r < 0.5) {
 			player1.color = Color.white;
 			player2.color = Color.black;
+
+			if (player1 is Person && player2 is AI) {
+				SetText (info, "You got the whites!");
+			} else if (player2 is Person) {
+				SetText (info, "Player 1 got whites!");
+			}
 		} else {
 			player1.color = Color.black;
 			player2.color = Color.white;
+			if (player1 is Person && player2 is AI) {
+				SetText (info, "You got the blacks!");
+			} else if (player2 is Person) {
+				SetText (info, "Player 2 got whites!");
+			}
 		}
 
 	}
@@ -854,6 +933,7 @@ public class ControlGame : MonoBehaviour
 
 	public Status VerifyStatus ()
 	{
+		SetPiecesInfo ();
 		Status status = Status.Continue;
 		if (teamBlackPieces.Count () > 0 && teamWhitePieces.Count () > 0
 		    && teamBlackPieces.Count () <= 2 && teamWhitePieces.Count () <= 2) {
@@ -889,5 +969,30 @@ public class ControlGame : MonoBehaviour
 
 	}
 
+	private void SetText (Text t, string message)
+	{
+		
+		t.text = message;
+	}
+
+	private void SetWinTextWhite ()
+	{
+
+		info.text = "White pieces win!";
+	
+	}
+
+	private void SetWinTextBlack ()
+	{
+
+		info.text = "Black pieces win!";
+	}
+
+	private void SetPiecesInfo ()
+	{
+
+		piecesInfo.text = "Whites: " + teamWhitePieces.Count ();
+		piecesInfo.text += "\n\nBlacks: " + teamBlackPieces.Count ();
+	}
 
 }

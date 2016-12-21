@@ -101,7 +101,7 @@ public class Piece : MonoBehaviour
 
 						if (controlGame.maxPlayForPlayer.Contains (this)) {
 
-							this.SetHighlightedPiece ();
+						
 							//controlGame gets the reference of last piece clicked by mouse
 							if (!controlGame.alreadyMoved) {
 								if ((controlGame.currentPlayerTurn.color == Color.white && (this.CompareTag ("WhitePieceTag") || this.CompareTag ("WhiteQueenTag")))
